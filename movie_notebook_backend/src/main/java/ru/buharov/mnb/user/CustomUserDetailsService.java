@@ -1,7 +1,10 @@
 package ru.buharov.mnb.user;
 
 import java.util.Collections;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.buharov.mnb.user.domain.UserEntity;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private UserDAO userDAO;
 
     @Autowired
-    public UserDetailsServiceImpl(UserDAO userDAO) {
+    public CustomUserDetailsService(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -31,6 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     // Converts our domain object to spring security objects
     private org.springframework.security.core.userdetails.User buildUser(UserEntity user) {
+        Set<GrantedAuthority> roles = Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()));
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
@@ -38,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 true,
                 true,
                 true,
-                Collections.emptyList());
+                roles);
 
     }
 }
