@@ -12,6 +12,7 @@ CREATE TABLE public.users
   password character varying(300) NOT NULL,
   email character varying(80) NOT NULL,
   enabled boolean NOT NULL,
+  role character varying(40) NOT NULL,
   CONSTRAINT users_pkey1 PRIMARY KEY (id),
   CONSTRAINT unique_username UNIQUE (username)
 );
