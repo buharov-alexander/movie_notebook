@@ -1,6 +1,7 @@
 package ru.buharov.mnb.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +32,7 @@ class UserServiceImpl implements UserService {
         return userDAO.findByUsername(getCurrentLoggedInUsername());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Override
     @Transactional
     public UserEntity createUser(UserEntity userEntity) {

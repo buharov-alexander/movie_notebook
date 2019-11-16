@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.buharov.mnb.user.UserService;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDTO createUser(CreateUserDTO createUserDTO) {
+    public UserDTO createUser(@RequestBody CreateUserDTO createUserDTO) {
         UserEntity userEntity = userService.createUser(createUserDTO.toEntity());
         return new UserDTO(userEntity);
     }
