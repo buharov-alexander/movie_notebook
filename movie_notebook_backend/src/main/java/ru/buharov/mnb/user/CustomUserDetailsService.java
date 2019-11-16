@@ -15,7 +15,7 @@ import ru.buharov.mnb.user.domain.UserEntity;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     @Autowired
     public CustomUserDetailsService(UserDAO userDAO) {
