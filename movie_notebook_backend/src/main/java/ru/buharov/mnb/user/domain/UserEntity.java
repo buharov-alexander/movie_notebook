@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,11 +26,21 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Size(min = 4, max = 40)
     private String username;
+
+    @NotNull
     private String password;
+
+    @NotNull
+    @Email
     private String email;
+
     private boolean enabled;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private UserRoleEnum role;
 }

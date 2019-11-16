@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.buharov.mnb.common.ValidatorUtil;
 import ru.buharov.mnb.user.domain.UserEntity;
 
 @Service
@@ -36,7 +37,7 @@ class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserEntity createUser(UserEntity userEntity) {
-        //TODO add validation
+        ValidatorUtil.validate(userEntity);
 
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setEnabled(true);
