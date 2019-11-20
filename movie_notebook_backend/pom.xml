@@ -15,6 +15,8 @@
 	<description>Movie notebook project</description>
 
 	<properties>
+		<guava.version>28.1-jre</guava.version>
+
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -56,6 +58,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 		<dependency>
