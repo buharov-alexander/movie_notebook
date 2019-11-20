@@ -14,6 +14,11 @@ import ru.buharov.mnb.common.rest.dto.ErrorDTO;
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(value = {Throwable.class})
+    protected ResponseEntity<Object> handleThrowable(Exception ex, WebRequest request) {
+        return handleExceptionInternal(ex, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
     @ExceptionHandler(value = {ValidationException.class})
     protected ResponseEntity<Object> handleValidationException(Exception ex, WebRequest request) {
         return handleExceptionInternal(ex, HttpStatus.BAD_REQUEST, request);
