@@ -1,5 +1,9 @@
 package ru.buharov.mnb.user;
 
+import javax.validation.ValidationException;
+import java.util.List;
+import java.util.Optional;
+import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -36,11 +40,29 @@ class UserServiceImpl implements UserService {
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
     @Transactional
+    public List<UserEntity> getUsers() {
+        return ImmutableList.copyOf(userDAO.findAll());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @Override
+    @Transactional
     public UserEntity createUser(UserEntity userEntity) {
         ValidatorUtil.validate(userEntity);
 
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setEnabled(true);
         return userDAO.save(userEntity);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        Optional<UserEntity> user = userDAO.findById(id);
+        if (!user.isPresent()) {
+            throw new ValidationException(String.format("User %d cannot be found", id));
+        }
+        userDAO.delete(user.get());
     }
 }
