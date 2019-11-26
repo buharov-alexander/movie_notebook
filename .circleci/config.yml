@@ -24,3 +24,6 @@ jobs:
 
       # run tests!
       - run: cd movie_notebook_backend && mvn test
+
+      - store_test_results:
+          path: movie_notebook_backend/target/surefire-reports
