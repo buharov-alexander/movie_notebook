@@ -20,6 +20,10 @@ import ru.buharov.mnb.user.domain.UserRoleEnum;
         locations = "classpath:application-test.properties")
 public abstract class BasicIntegrationTest {
 
+    static final String USER_USERNAME = "user";
+    static final String USER_USERMAIL = "user@mail.ru";
+    private static final String ENCODED_PASSWORD = "$2a$10$yN2pc/5.2Rf5vXmgpNdFteR5zD0/CPZyMkVG0uajiTvY8a3N1fLae";
+
     private static boolean initialized;
 
     @Autowired
@@ -37,7 +41,7 @@ public abstract class BasicIntegrationTest {
     private static void createRootUser(UserDAO userDAO) {
         UserEntity rootUser = UserEntity.builder()
                 .username("root")
-                .password("abcd")
+                .password(ENCODED_PASSWORD)
                 .role(UserRoleEnum.ADMIN)
                 .email("root@mail.ru")
                 .build();
@@ -46,10 +50,10 @@ public abstract class BasicIntegrationTest {
 
     private static void createRegularUser(UserDAO userDAO) {
         UserEntity rootUser = UserEntity.builder()
-                .username("user")
-                .password("abcd")
+                .username(USER_USERNAME)
+                .password(ENCODED_PASSWORD)
                 .role(UserRoleEnum.USER)
-                .email("user@mail.ru")
+                .email(USER_USERMAIL)
                 .build();
         userDAO.save(rootUser);
     }
