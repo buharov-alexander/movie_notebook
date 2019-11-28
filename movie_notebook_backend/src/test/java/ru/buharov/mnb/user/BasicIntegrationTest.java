@@ -24,7 +24,7 @@ public abstract class BasicIntegrationTest {
     static final String USER_EMAIL = "user@mail.ru";
     static final String ADMIN_USERNAME = "root";
     static final String ADMIN_EMAIL = "root@mail.ru";
-    private static final String ENCODED_PASSWORD = "$2a$10$yN2pc/5.2Rf5vXmgpNdFteR5zD0/CPZyMkVG0uajiTvY8a3N1fLae";
+    static final String ENCODED_PASSWORD = "$2a$10$yN2pc/5.2Rf5vXmgpNdFteR5zD0/CPZyMkVG0uajiTvY8a3N1fLae";
 
     private static boolean initialized;
 
