@@ -17,21 +17,19 @@ CREATE TABLE public.users
   CONSTRAINT users_pkey1 PRIMARY KEY (id),
   CONSTRAINT unique_username UNIQUE (username)
 );
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
 
 -- Movies
 CREATE TABLE public.movies (
     id integer DEFAULT nextval('public.id_seq'::regclass) NOT NULL,
     tmdb_id integer,
+    user_id integer NOT NULL,
     title character varying(80),
     original_title character varying(80),
     description text,
-    poster_path character varying(80)
+    poster_path character varying(80),
+    CONSTRAINT movies_pkey PRIMARY KEY (id),
+    CONSTRAINT movies_tmdb_id_unique UNIQUE (tmdb_id),
+    CONSTRAINT movies_user_id_fkey1 FOREIGN KEY (user_id)
+      REFERENCES public.users (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-ALTER TABLE ONLY public.movies
-    ADD CONSTRAINT movies_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY public.movies
-    ADD CONSTRAINT movies_tmdb_id_unique UNIQUE (tmdb_id);
