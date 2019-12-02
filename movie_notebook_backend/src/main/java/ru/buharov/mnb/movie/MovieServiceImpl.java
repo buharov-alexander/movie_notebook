@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.buharov.mnb.user.UserService;
 
 @Service
-public class MovieServiceImpl implements MovieService {
+class MovieServiceImpl implements MovieService {
 
     private UserService userService;
     private MovieDAO movieDAO;

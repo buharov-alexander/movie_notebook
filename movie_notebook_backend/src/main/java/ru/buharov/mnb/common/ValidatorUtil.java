@@ -11,7 +11,7 @@ public class ValidatorUtil {
 
     private static Validator validator;
 
-    public static <T> Set<ConstraintViolation<T>> violations(T obj) {
+    private static <T> Set<ConstraintViolation<T>> violations(T obj) {
         return getValidator().validate(obj);
     }
 
@@ -32,5 +32,11 @@ public class ValidatorUtil {
             validator = Validation.buildDefaultValidatorFactory().getValidator();
         }
         return validator;
+    }
+
+    public static void notNullArg(Long id) {
+        if (id == null) {
+            throw new ValidationException("Unexpected null argument");
+        }
     }
 }
