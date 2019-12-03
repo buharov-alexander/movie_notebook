@@ -20,7 +20,7 @@ import ru.buharov.mnb.user.domain.UserRoleEnum;
         locations = "classpath:application-test.properties")
 public abstract class BasicIntegrationTest {
 
-    static final String USER_USERNAME = "user";
+    protected static final String USER_USERNAME = "user";
     static final String USER_EMAIL = "user@mail.ru";
     static final String ADMIN_USERNAME = "root";
     static final String ADMIN_EMAIL = "root@mail.ru";
