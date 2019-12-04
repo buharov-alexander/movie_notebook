@@ -1,5 +1,6 @@
 package ru.buharov.mnb.user;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import ru.buharov.mnb.user.domain.UserEntity;
 
@@ -13,5 +14,5 @@ public interface UserService {
 
     UserEntity createUser(UserEntity userEntity);
 
-    void deleteUser(Long id);
+    void deleteUser(@NotNull Long id);
 }

@@ -1,6 +1,7 @@
 package ru.buharov.mnb.user;
 
 import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import com.google.common.collect.ImmutableList;
@@ -11,10 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.buharov.mnb.common.ValidatorUtil;
+import org.springframework.validation.annotation.Validated;
+import ru.buharov.mnb.common.validation.ValidatorUtil;
 import ru.buharov.mnb.user.domain.UserEntity;
 
 @Service
+@Validated
 class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
@@ -58,7 +61,7 @@ class UserServiceImpl implements UserService {
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
     @Transactional
-    public void deleteUser(Long id) {
+    public void deleteUser(@NotNull Long id) {
         Optional<UserEntity> user = userDAO.findById(id);
         if (!user.isPresent()) {
             throw new ValidationException(String.format("User %d cannot be found", id));

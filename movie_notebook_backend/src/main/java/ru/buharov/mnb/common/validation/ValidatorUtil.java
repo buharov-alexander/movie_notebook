@@ -1,4 +1,4 @@
-package ru.buharov.mnb.common;
+package ru.buharov.mnb.common.validation;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -32,11 +32,5 @@ public class ValidatorUtil {
             validator = Validation.buildDefaultValidatorFactory().getValidator();
         }
         return validator;
-    }
-
-    public static void notNullArg(Long id) {
-        if (id == null) {
-            throw new ValidationException("Unexpected null argument");
-        }
     }
 }
