@@ -6,10 +6,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.buharov.mnb.common.validation.ValidatorUtil;
 import ru.buharov.mnb.common.service.RequestService;
+import ru.buharov.mnb.movie.MovieService;
+import ru.buharov.mnb.movie.domain.MovieEntity;
 import ru.buharov.mnb.tmdb.dto.TmdbMovieDTO;
 
 @Service
@@ -26,10 +28,14 @@ class TmbdMovieServiceImpl implements TmdbMovieService {
 
     private JsonTmdbService jsonTmdbService;
     private RequestService requestService;
+    private MovieService movieService;
 
-    public TmbdMovieServiceImpl(JsonTmdbService jsonTmdbService, RequestService requestService) {
+    @Autowired
+    public TmbdMovieServiceImpl(MovieService movieService, JsonTmdbService jsonTmdbService,
+                                RequestService requestService) {
         this.jsonTmdbService = jsonTmdbService;
         this.requestService = requestService;
+        this.movieService = movieService;
     }
 
     @Override
@@ -37,6 +43,19 @@ class TmbdMovieServiceImpl implements TmdbMovieService {
         String url = TMDB_SERVICE_URL + MOVIE + "/" + tmdbMovieId + START_PARAM;
         JsonNode jsonNode = requestService.getJson(url);
         return jsonTmdbService.parseTmdbMovieJson(jsonNode);
+    }
+
+    @Override
+    public MovieEntity saveTmdbMovie(@NotNull Long tmdbMovieId) {
+        TmdbMovieDTO tmdbMovieDTO = getTmdbMovie(tmdbMovieId);
+        MovieEntity movieEntity = MovieEntity.builder()
+                .tmdbId(tmdbMovieDTO.getTmdbId())
+                .title(tmdbMovieDTO.getTitle())
+                .originalTitle(tmdbMovieDTO.getOriginalTitle())
+                .description(tmdbMovieDTO.getDescription())
+                .posterPath(tmdbMovieDTO.getPosterPath())
+                .build();
+        return movieService.saveMovie(movieEntity);
     }
 
     @Override
