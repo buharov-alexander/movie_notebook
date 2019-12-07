@@ -1,5 +1,9 @@
 package ru.buharov.mnb.movie;
 
+import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +22,17 @@ class MovieServiceImpl implements MovieService {
     public MovieServiceImpl(UserService userService, MovieDAO movieDAO) {
         this.userService = userService;
         this.movieDAO = movieDAO;
+    }
+
+    @Override
+    public List<MovieEntity> getMovies() {
+        return ImmutableList.copyOf(movieDAO.findAll());
+    }
+
+    @Override
+    public MovieEntity getMovie(@NotNull Long id) {
+        return movieDAO.findById(id)
+                .orElseThrow(() -> new ValidationException(String.format("Cannot found movie %s", id)));
     }
 
     @Override
