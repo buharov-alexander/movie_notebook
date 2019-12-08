@@ -1,5 +1,6 @@
 package ru.buharov.mnb.movie.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +39,7 @@ public class MovieEntity {
 
     @NotNull
     private String originalTitle;
+    @Column(length = 2000)
     private String description;
     private String posterPath;
 }
