@@ -3,6 +3,7 @@ package ru.buharov.mnb.movie.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.buharov.mnb.movie.MovieService;
@@ -16,6 +17,11 @@ public class MovieController {
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
+    }
+
+    @GetMapping(value = "/{id}")
+    public MovieDTO getTmdbMovie(@PathVariable Long id) {
+        return new MovieDTO(movieService.getMovie(id));
     }
 
     @GetMapping(path = "list")
