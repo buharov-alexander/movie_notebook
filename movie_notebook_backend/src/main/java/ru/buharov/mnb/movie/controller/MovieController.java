@@ -2,6 +2,7 @@ package ru.buharov.mnb.movie.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,11 @@ public class MovieController {
     @GetMapping(value = "/{id}")
     public MovieDTO getTmdbMovie(@PathVariable Long id) {
         return new MovieDTO(movieService.getMovie(id));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteTmdbMovie(@PathVariable Long id) {
+        movieService.deleteMovie(id);
     }
 
     @GetMapping(path = "list")

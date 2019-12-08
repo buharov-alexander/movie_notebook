@@ -41,4 +41,9 @@ class MovieServiceImpl implements MovieService {
         ValidatorUtil.validate(movieEntity);
         return movieDAO.save(movieEntity);
     }
+
+    @Override
+    public void deleteMovie(@NotNull Long id) {
+        movieDAO.delete(getMovie(id));
+    }
 }

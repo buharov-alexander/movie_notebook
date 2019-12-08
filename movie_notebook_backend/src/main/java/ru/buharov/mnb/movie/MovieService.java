@@ -10,4 +10,6 @@ public interface MovieService {
     MovieEntity getMovie(@NotNull Long id);
 
     MovieEntity saveMovie(MovieEntity movieEntity);
+
+    void deleteMovie(@NotNull Long id);
 }
