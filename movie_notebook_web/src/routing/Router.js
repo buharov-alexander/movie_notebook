@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NavigationBar from 'components/header/NavigationBar';
-import MoviesPage from 'pages/movies/MoviesPage';
+import MoviesPage from 'pages/movies/moviesContainer';
 
 const Router = () => (
   <BrowserRouter basename="/mnb">

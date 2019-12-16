@@ -1,0 +1,5 @@
+export const FETCH_MOVIES = 'FETCH_MOVIES';
+
+export const REQUEST = 'REQUEST';
+export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+export const REQUEST_FAILED = 'REQUEST_FAILED';

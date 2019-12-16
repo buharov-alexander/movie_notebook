@@ -1,0 +1,14 @@
+import { Record, List } from 'immutable';
+
+export const MovieRecord = Record({
+  id: undefined,
+  tmdbId: undefined,
+  title: undefined,
+  originalTitle: undefined,
+  description: undefined,
+  posterPath: undefined,
+});
+
+export const movieListRequest = () => fetch('/mnb/movie/list')
+  .then((response) => response.json())
+  .then((response) => ({ movies: List(response.map((movie) => MovieRecord(movie))) }));
