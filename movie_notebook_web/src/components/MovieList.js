@@ -18,7 +18,10 @@ MovieList.propTypes = {
 
 const MovieItem = ({ movie }) => (
   <ListItem button>
-    <ListItemText primary={movie.title} />
+    <ListItemText
+      primary={movie.title}
+      secondary={movie.originalTitle}
+    />
   </ListItem>
 );
 
