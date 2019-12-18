@@ -5,7 +5,7 @@ import NavigationBar from 'components/header/NavigationBar';
 import MoviesPage from 'pages/movies/moviesContainer';
 
 const Router = () => (
-  <BrowserRouter basename="/mnb">
+  <BrowserRouter basename="/mnb/webui">
     <div id="router">
       <main className="main">
         <NavigationBar />
