@@ -6,7 +6,7 @@ import NavigationBar from 'components/header/NavigationBar';
 import MoviesPage from 'pages/movies/moviesContainer';
 
 const useStyles = makeStyles((theme) => ({
-  main: {
+  root: {
     height: '100vh',
     backgroundColor: theme.palette.primary.light,
   },
@@ -18,7 +18,7 @@ const Router = () => {
   return (
     <BrowserRouter basename="/mnb/webui">
       <div id="router">
-        <main className={classes.main}>
+        <main className={classes.root}>
           <NavigationBar />
           <Switch>
             <Route path="/movies" component={MoviesPage} />

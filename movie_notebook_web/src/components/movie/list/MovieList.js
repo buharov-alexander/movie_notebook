@@ -10,23 +10,41 @@ import { MovieRecord } from 'api/movieApi';
 
 const styles = {
   root: {
-    padding: '10px',
+    margin: '10px',
   },
 };
 
-const MovieList = ({ movies, classes }) => (
+const MovieList = ({
+  movies,
+  onSelect,
+  selectedIndex,
+  classes,
+}) => (
   <List className={classes.root}>
-    {movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
+    {movies.map((movie, index) => (
+      <MovieItem
+        movie={movie}
+        key={movie.id}
+        selected={index === selectedIndex}
+        onClick={() => onSelect(index)}
+      />
+    ))}
   </List>
 );
+
+MovieList.defaultProps = {
+  selectedIndex: null,
+};
 
 MovieList.propTypes = {
   movies: ImmutablePropTypes.list.isRequired,
   classes: PropTypes.object.isRequired,
+  selectedIndex: PropTypes.number,
+  onSelect: PropTypes.func.isRequired,
 };
 
-const MovieItem = ({ movie }) => (
-  <ListItem button>
+const MovieItem = ({ movie, selected, onClick }) => (
+  <ListItem button selected={selected} onClick={onClick}>
     <ListItemText
       primary={movie.title}
       secondary={movie.originalTitle}
@@ -36,6 +54,8 @@ const MovieItem = ({ movie }) => (
 
 MovieItem.propTypes = {
   movie: ImmutablePropTypes.recordOf(MovieRecord).isRequired,
+  selected: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MovieList);

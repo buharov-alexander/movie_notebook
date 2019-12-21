@@ -21,7 +21,7 @@ function NavigationBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Movie Plan
+            Movie Notebook
           </Typography>
         </Toolbar>
       </AppBar>

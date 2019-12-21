@@ -1,11 +1,12 @@
 import { Record, List } from 'immutable';
 
 import {
-  FETCH_MOVIES,
+  FETCH_MOVIES, SELECT_MOVIE,
 } from 'constants/actionTypes';
 
 const MoviesState = Record({
   list: List(),
+  selectedIndex: null,
 });
 
 export default function moviesReducer(state = MoviesState({}), action) {
@@ -13,6 +14,11 @@ export default function moviesReducer(state = MoviesState({}), action) {
     case FETCH_MOVIES: {
       return state.merge({
         list: action.payload.movies,
+      });
+    }
+    case SELECT_MOVIE: {
+      return state.merge({
+        selectedIndex: action.payload.selectedIndex,
       });
     }
     default:
