@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Grid from '@material-ui/core/Grid';
-import MovieList from 'components/MovieList';
+import MovieList from 'components/movie/list/MovieList';
 
 class MoviesPage extends PureComponent {
   componentDidMount() {
