@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import MovieList from 'components/movie/list/MovieList';
 import MovieDetails from 'components/movie/details/MovieDetails';
@@ -22,16 +23,18 @@ class MoviesPage extends PureComponent {
     const { movies, selectedIndex, selectMovie } = this.props;
     return (
       <Grid container>
-        <Grid item xs={3}>
+        <Grid item xs={12} md={4}>
           <MovieList
             movies={movies}
             onSelect={(index) => selectMovie(index)}
             selectedIndex={selectedIndex}
           />
         </Grid>
-        <Grid item xs={9}>
-          {this.renderMovieDetails()}
-        </Grid>
+        <Hidden smDown>
+          <Grid item md={8}>
+            {this.renderMovieDetails()}
+          </Grid>
+        </Hidden>
       </Grid>
     );
   }
