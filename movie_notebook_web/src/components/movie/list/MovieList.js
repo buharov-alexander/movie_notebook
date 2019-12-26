@@ -10,7 +10,7 @@ import { MovieRecord } from 'api/movieApi';
 
 const styles = {
   root: {
-    margin: '10px',
+    margin: '20px',
   },
 };
 

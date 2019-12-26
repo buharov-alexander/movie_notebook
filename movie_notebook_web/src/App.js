@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'store/configureStore';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { lime } from '@material-ui/core/colors';
+import { purple, lime } from '@material-ui/core/colors';
 import Router from 'routing/Router';
 
 const store = configureStore();
@@ -12,7 +12,9 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: lime[600],
-      light: lime[50],
+    },
+    secondary: {
+      main: purple[600],
     },
   },
 });

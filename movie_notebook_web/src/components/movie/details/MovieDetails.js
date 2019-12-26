@@ -8,12 +8,13 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { MovieRecord } from 'api/movieApi';
 
-const styles = {
+const styles = (theme) => ({
   root: {
     minHeight: '500px',
-    margin: '10px',
+    margin: '20px',
+    backgroundColor: theme.palette.primary.light,
   },
-};
+});
 
 const MovieDetails = ({ movie, classes }) => (
   <Card className={classes.root}>
