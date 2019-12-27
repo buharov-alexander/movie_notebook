@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { useHistory } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -16,7 +17,7 @@ const styles = {
 
 const MovieList = ({
   movies,
-  onSelect,
+  selectMovie,
   selectedIndex,
   classes,
 }) => (
@@ -26,7 +27,7 @@ const MovieList = ({
         movie={movie}
         key={movie.id}
         selected={index === selectedIndex}
-        onClick={() => onSelect(index)}
+        selectMovie={() => selectMovie(index)}
       />
     ))}
   </List>
@@ -40,22 +41,30 @@ MovieList.propTypes = {
   movies: ImmutablePropTypes.list.isRequired,
   classes: PropTypes.object.isRequired,
   selectedIndex: PropTypes.number,
-  onSelect: PropTypes.func.isRequired,
+  selectMovie: PropTypes.func.isRequired,
 };
 
-const MovieItem = ({ movie, selected, onClick }) => (
-  <ListItem button selected={selected} onClick={onClick}>
-    <ListItemText
-      primary={movie.title}
-      secondary={movie.originalTitle}
-    />
-  </ListItem>
-);
+const MovieItem = ({ movie, selected, selectMovie }) => {
+  const history = useHistory();
+  const onClick = () => {
+    selectMovie();
+    history.push(`/movies/details/${movie.id}`);
+  };
+
+  return (
+    <ListItem button selected={selected} onClick={onClick}>
+      <ListItemText
+        primary={movie.title}
+        secondary={movie.originalTitle}
+      />
+    </ListItem>
+  );
+};
 
 MovieItem.propTypes = {
   movie: ImmutablePropTypes.recordOf(MovieRecord).isRequired,
   selected: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  selectMovie: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MovieList);
