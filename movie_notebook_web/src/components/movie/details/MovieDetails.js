@@ -16,22 +16,31 @@ const styles = (theme) => ({
   },
 });
 
-const MovieDetails = ({ movie, classes }) => (
-  <Card className={classes.root}>
-    <CardContent>
-      <Typography gutterBottom variant="h5" component="h2">
-        {movie.title}
-      </Typography>
-      <Typography variant="body2" color="textSecondary" component="p">
-        {movie.description}
-      </Typography>
-    </CardContent>
-  </Card>
-);
+const MovieDetails = ({ movie, classes }) => {
+  if (!movie) {
+    return null;
+  }
+  return (
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {movie.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {movie.description}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
+
+MovieDetails.defaultProps = {
+  movie: null,
+};
 
 MovieDetails.propTypes = {
-  movie: ImmutablePropTypes.recordOf(MovieRecord).isRequired,
   classes: PropTypes.object.isRequired,
+  movie: ImmutablePropTypes.recordOf(MovieRecord),
 };
 
 export default withStyles(styles)(MovieDetails);
