@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.ByteStreams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,16 @@ class RequestServiceImpl implements RequestService {
 
         try (InputStream is = new URL(url).openStream()) {
             return mapper.readTree(is);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            throw new MnbInternalException(e);
+        }
+    }
+
+    @Override
+    public byte[] getByteArray(String url) {
+        try (InputStream is = new URL(url).openStream()) {
+            return ByteStreams.toByteArray(is);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             throw new MnbInternalException(e);
