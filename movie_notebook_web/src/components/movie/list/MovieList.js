@@ -7,7 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { MovieRecord } from 'api/movieApi';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import { MovieRecord, getPosterPath } from 'api/movieApi';
 
 const styles = {
   root: {
@@ -53,6 +55,9 @@ const MovieItem = ({ movie, selected, selectMovie }) => {
 
   return (
     <ListItem button selected={selected} onClick={onClick}>
+      <ListItemAvatar>
+        <Avatar src={getPosterPath(movie)} />
+      </ListItemAvatar>
       <ListItemText
         primary={movie.title}
         secondary={movie.originalTitle}

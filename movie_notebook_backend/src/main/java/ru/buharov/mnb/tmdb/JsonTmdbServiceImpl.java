@@ -27,7 +27,8 @@ class JsonTmdbServiceImpl implements JsonTmdbService {
                 .build();
 
         if (!posterPathNode.isMissingNode()) {
-            tmdbMovieDTO.setPosterPath(posterPathNode.asText());
+            String posterPath = posterPathNode.asText();
+            tmdbMovieDTO.setPosterPath(posterPath.equals("null") ? null : posterPath);
         }
 
         return tmdbMovieDTO;

@@ -9,6 +9,8 @@ export const MovieRecord = Record({
   posterPath: undefined,
 });
 
+export const getPosterPath = (movie) => (movie.posterPath ? `/mnb/poster/SMALL?path=${movie.posterPath}` : null);
+
 export const movieListRequest = () => fetch('/mnb/movie/list')
   .then((response) => response.json())
   .then((response) => ({ movies: List(response.map((movie) => MovieRecord(movie))) }));
