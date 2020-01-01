@@ -29,17 +29,9 @@ const NavigationBar = ({ classes, activePage, selectPage }) => (
         </Typography>
         <IconButton
           color="inherit"
-          disabled={activePage === MOVIES_PAGE}
-          onClick={() => selectPage(MOVIES_PAGE)}
+          onClick={() => selectPage(activePage === MOVIES_PAGE ? SEARCH_PAGE : MOVIES_PAGE)}
         >
-          <ListIcon />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          disabled={activePage === SEARCH_PAGE}
-          onClick={() => selectPage(SEARCH_PAGE)}
-        >
-          <SearchIcon />
+          {activePage === MOVIES_PAGE ? <ListIcon /> : <SearchIcon />}
         </IconButton>
       </Toolbar>
     </AppBar>
