@@ -63,7 +63,8 @@ class TmbdMovieServiceImpl implements TmdbMovieService {
         query = encodeQuery(query);
         String url = TMDB_SERVICE_URL + SEARCH_MOVIE + START_PARAM + QUERY + query;
         JsonNode json = requestService.getJson(url);
-        return jsonTmdbService.parseMovieListJson(json);    }
+        return jsonTmdbService.parseMovieListJson(json);
+    }
 
     private String encodeQuery(String query) {
         try {

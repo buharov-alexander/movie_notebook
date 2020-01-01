@@ -31,7 +31,7 @@ public class MovieEntity {
 
     @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @NotNull
