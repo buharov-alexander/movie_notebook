@@ -4,6 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import ListIcon from '@material-ui/icons/List';
+import {
+  MOVIES_PAGE, SEARCH_PAGE,
+} from 'constants/pageTypes';
 
 const styles = {
   root: {
@@ -14,23 +20,36 @@ const styles = {
   },
 };
 
-function NavigationBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Movie Notebook
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+const NavigationBar = ({ classes, activePage, selectPage }) => (
+  <div className={classes.root}>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" color="inherit" className={classes.grow}>
+          Movie Notebook
+        </Typography>
+        <IconButton
+          color="inherit"
+          disabled={activePage === MOVIES_PAGE}
+          onClick={() => selectPage(MOVIES_PAGE)}
+        >
+          <ListIcon />
+        </IconButton>
+        <IconButton
+          color="inherit"
+          disabled={activePage === SEARCH_PAGE}
+          onClick={() => selectPage(SEARCH_PAGE)}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  </div>
+);
 
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  activePage: PropTypes.string.isRequired,
+  selectPage: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(NavigationBar);

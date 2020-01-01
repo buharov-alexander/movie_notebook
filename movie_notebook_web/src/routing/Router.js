@@ -1,33 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { BrowserRouter } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
-import { BrowserRouter, Route } from 'react-router-dom';
+import Pages from 'pages/pagesContainer';
 
-import NavigationBar from 'components/header/NavigationBar';
-import MoviesPage from 'pages/movies/moviesContainer';
-
-const styles = {
-  root: {
-    height: '100vh',
-  },
-};
-
-const Router = ({ classes }) => (
+const Router = () => (
   <BrowserRouter basename="/mnb/webui">
-    <div id="router" className={classes.root}>
-      <NavigationBar />
-      <main>
-        <Route path="/movies">
-          <MoviesPage />
-        </Route>
-      </main>
-    </div>
+    <Pages />
   </BrowserRouter>
 );
 
-Router.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Router);
+export default Router;
