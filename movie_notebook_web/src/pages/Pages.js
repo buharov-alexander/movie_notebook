@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import { Route } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import NavigationBar from 'components/header/NavigationBar';
 import MoviesPage from 'pages/movies/moviesContainer';
@@ -13,16 +13,24 @@ const styles = {
   },
 };
 
-const Pages = ({ classes, activePage, selectPage }) => (
-  <div id="pages" className={classes.root}>
-    <NavigationBar activePage={activePage} selectPage={selectPage} />
-    <main>
-      <Route path="/movies">
-        <MoviesPage />
-      </Route>
-    </main>
-  </div>
-);
+const Pages = ({ classes, activePage, selectPage }) => {
+  const history = useHistory();
+  return (
+    <div id="pages" className={classes.root}>
+      <NavigationBar activePage={activePage} selectPage={(page) => selectPage(page, history)} />
+      <main>
+        <Switch>
+          <Route path="/movies">
+            <MoviesPage />
+          </Route>
+          <Route path="/search">
+            Test
+          </Route>
+        </Switch>
+      </main>
+    </div>
+  );
+};
 
 Pages.propTypes = {
   classes: PropTypes.object.isRequired,
