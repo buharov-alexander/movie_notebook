@@ -31,7 +31,7 @@ const NavigationBar = ({ classes, activePage, selectPage }) => (
           color="inherit"
           onClick={() => selectPage(activePage === MOVIES_PAGE ? SEARCH_PAGE : MOVIES_PAGE)}
         >
-          {activePage === MOVIES_PAGE ? <ListIcon /> : <SearchIcon />}
+          {activePage === MOVIES_PAGE ? <SearchIcon /> : <ListIcon />}
         </IconButton>
       </Toolbar>
     </AppBar>

@@ -6,6 +6,7 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 
 import NavigationBar from 'components/header/NavigationBar';
 import MoviesPage from 'pages/movies/moviesContainer';
+import SearchPage from 'pages/search/searchContainer';
 
 const styles = {
   root: {
@@ -24,7 +25,7 @@ const Pages = ({ classes, activePage, selectPage }) => {
             <MoviesPage />
           </Route>
           <Route path="/search">
-            Test
+            <SearchPage />
           </Route>
         </Switch>
       </main>
