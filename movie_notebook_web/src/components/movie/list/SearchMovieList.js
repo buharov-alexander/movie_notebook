@@ -13,11 +13,20 @@ const styles = {
 };
 
 const SearchMovieList = (props) => {
-  const { foundMovies, selectFoundMovie, classes } = props;
+  const {
+    foundMovies, selectFoundMovie, changeTextInSearchForm, classes,
+  } = props;
+
   return (
     <div>
       <div className={classes.searchText}>
-        <TextField id="search-movies" label="Search" variant="outlined" fullWidth />
+        <TextField
+          id="search-movies"
+          label="Search"
+          variant="outlined"
+          fullWidth
+          onChange={(event) => changeTextInSearchForm(event.target.value)}
+        />
       </div>
       <MovieList movies={foundMovies} selectMovie={selectFoundMovie} />
     </div>
@@ -28,6 +37,7 @@ SearchMovieList.propTypes = {
   foundMovies: ImmutablePropTypes.list.isRequired,
   classes: PropTypes.object.isRequired,
   selectFoundMovie: PropTypes.func.isRequired,
+  changeTextInSearchForm: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SearchMovieList);

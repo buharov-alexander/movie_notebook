@@ -3,6 +3,7 @@ export const SELECT_MOVIE = 'SELECT_MOVIE';
 
 export const SEARCH_MOVIE = 'SEARCH_MOVIE';
 export const SELECT_FOUND_MOVIE = 'SELECT_FOUND_MOVIE';
+export const TYPPING_TIMEOUT = 'TYPPING_TIMEOUT';
 
 export const SELECT_PAGE = 'SELECT_PAGE';
 
