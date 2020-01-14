@@ -14,3 +14,7 @@ export const getPosterPath = (movie) => (movie.posterPath ? `/mnb/poster/SMALL?p
 export const movieListRequest = () => fetch('/mnb/movie/list')
   .then((response) => response.json())
   .then((response) => ({ movies: List(response.map((movie) => MovieRecord(movie))) }));
+
+export const searchMovieRequest = ({ query }) => fetch(`/mnb/tmbd/movie/search?query=${query}`)
+  .then((response) => response.json())
+  .then((response) => ({ foundMovies: List(response.map((movie) => MovieRecord(movie))) }));

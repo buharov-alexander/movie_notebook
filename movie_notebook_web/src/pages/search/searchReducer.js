@@ -1,7 +1,7 @@
 import { Record, List } from 'immutable';
 
 import {
-  SEARCH_MOVIE, SELECT_FOUND_MOVIE, TYPPING_TIMEOUT,
+  SEARCH_MOVIES, SELECT_FOUND_MOVIE, TYPPING_TIMEOUT,
 } from 'constants/actionTypes';
 
 const SearchState = Record({
@@ -12,7 +12,7 @@ const SearchState = Record({
 
 export default function moviesReducer(state = SearchState({}), action) {
   switch (action.type) {
-    case SEARCH_MOVIE: {
+    case SEARCH_MOVIES: {
       return state.merge({
         list: action.payload.foundMovies,
       });

@@ -27,7 +27,7 @@ const MovieList = ({
     {movies.map((movie, index) => (
       <MovieItem
         movie={movie}
-        key={movie.id}
+        key={movie.tmdbId}
         selected={index === selectedIndex}
         selectMovie={() => selectMovie(index)}
       />
