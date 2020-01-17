@@ -12,9 +12,6 @@ import {
 } from 'constants/pageTypes';
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
   grow: {
     flexGrow: 1,
   },

@@ -10,7 +10,9 @@ import SearchPage from 'pages/search/searchContainer';
 
 const styles = {
   root: {
+    display: 'flex',
     height: '100vh',
+    flexDirection: 'column',
   },
 };
 

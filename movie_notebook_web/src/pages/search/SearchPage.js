@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import SearchMovieList from 'components/movie/list/SearchMovieList';
+import SearchMasterMovie from 'components/movie/master/SearchMasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
 
@@ -32,7 +32,7 @@ class SearchPage extends PureComponent {
     };
     return (
       <MasterDetails
-        MasterType={SearchMovieList}
+        MasterType={SearchMasterMovie}
         masterProps={masterProps}
         DetailsType={MovieDetails}
         detailsProps={{ movie: foundMovies.get(selectedIndex) }}

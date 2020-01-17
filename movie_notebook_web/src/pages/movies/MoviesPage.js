@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import MovieList from 'components/movie/list/MovieList';
+import MasterMovie from 'components/movie/master/MasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
 
@@ -16,7 +16,7 @@ class MoviesPage extends PureComponent {
     const { movies, selectedIndex, selectMovie } = this.props;
     return (
       <MasterDetails
-        MasterType={MovieList}
+        MasterType={MasterMovie}
         masterProps={{ movies, selectedIndex, selectMovie }}
         DetailsType={MovieDetails}
         detailsProps={{ movie: movies.get(selectedIndex) }}

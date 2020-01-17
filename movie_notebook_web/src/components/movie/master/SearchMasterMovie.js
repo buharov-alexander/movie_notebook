@@ -4,11 +4,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import MovieList from 'components/movie/list/MovieList';
 
 const styles = {
+  root: {
+    padding: '0px 20px 0px 20px',
+  },
   searchText: {
-    padding: '20px 20px 0px 20px',
+    padding: '20px 0px 20px 0px',
+  },
+  list: {
+    overflow: 'auto',
+    height: 'calc(100vh - 180px)',
   },
 };
 
@@ -18,8 +26,8 @@ const SearchMovieList = (props) => {
   } = props;
 
   return (
-    <div>
-      <div className={classes.searchText}>
+    <Grid container className={classes.root}>
+      <Grid item xs={12} className={classes.searchText}>
         <TextField
           id="search-movies"
           label="Search"
@@ -27,9 +35,11 @@ const SearchMovieList = (props) => {
           fullWidth
           onChange={(event) => changeTextInSearchForm(event.target.value)}
         />
-      </div>
-      <MovieList movies={foundMovies} selectMovie={selectFoundMovie} />
-    </div>
+      </Grid>
+      <Grid item xs={12} className={classes.list}>
+        <MovieList movies={foundMovies} selectMovie={selectFoundMovie} />
+      </Grid>
+    </Grid>
   );
 };
 

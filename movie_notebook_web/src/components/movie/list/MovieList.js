@@ -12,9 +12,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { MovieRecord, getPosterPath } from 'api/movieApi';
 
 const styles = {
-  root: {
-    margin: '20px',
-  },
 };
 
 const MovieList = ({
