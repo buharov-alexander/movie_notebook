@@ -16,7 +16,7 @@ class MoviesPage extends PureComponent {
   openDetails = (movie, index) => {
     const { selectMovie, history } = this.props;
     selectMovie(index);
-    history.push(`/movies/details/${movie.id}`);
+    history.push(`/movies/details/${movie.tmdbId}`);
   }
 
   render() {

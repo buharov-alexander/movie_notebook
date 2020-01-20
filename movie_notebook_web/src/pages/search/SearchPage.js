@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { withRouter } from 'react-router-dom';
 
 import SearchMasterMovie from 'components/movie/master/SearchMasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
@@ -19,15 +20,21 @@ class SearchPage extends PureComponent {
     setTappingTimeout(timeoutId);
   };
 
+  openDetails = (movie, index) => {
+    const { selectFoundMovie, history } = this.props;
+    selectFoundMovie(index);
+    history.push(`/search/details/${movie.tmdbId}`);
+  }
+
   render() {
     const {
-      selectedIndex, selectFoundMovie, foundMovies,
+      selectedIndex, foundMovies,
     } = this.props;
 
     const masterProps = {
       foundMovies,
       selectedIndex,
-      selectFoundMovie,
+      selectFoundMovie: this.openDetails,
       changeTextInSearchForm: this.changeTextInSearchForm,
     };
     return (
@@ -49,9 +56,10 @@ SearchPage.propTypes = {
   foundMovies: ImmutablePropTypes.list.isRequired,
   selectedIndex: PropTypes.number,
   tappingTimeoutId: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired,
   selectFoundMovie: PropTypes.func.isRequired,
   searchMovies: PropTypes.func.isRequired,
   setTappingTimeout: PropTypes.func.isRequired,
 };
 
-export default SearchPage;
+export default withRouter(SearchPage);
