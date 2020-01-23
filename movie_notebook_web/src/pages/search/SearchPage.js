@@ -32,9 +32,9 @@ class SearchPage extends PureComponent {
     } = this.props;
 
     const masterProps = {
-      foundMovies,
+      movies: foundMovies,
       selectedIndex,
-      selectFoundMovie: this.openDetails,
+      selectMovie: this.openDetails,
       changeTextInSearchForm: this.changeTextInSearchForm,
     };
     return (

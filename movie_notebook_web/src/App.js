@@ -1,13 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'store/configureStore';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, fade } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { purple, lime } from '@material-ui/core/colors';
 import Router from 'routing/Router';
 
 const store = configureStore();
 
+const defaultTheme = createMuiTheme();
+console.log(defaultTheme);
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,6 +17,10 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: purple[600],
+    },
+    action: {
+      hover: fade(purple[600], defaultTheme.palette.action.hoverOpacity),
+      selected: fade(purple[600], defaultTheme.palette.action.selectedOpacity),
     },
   },
 });

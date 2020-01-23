@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -21,9 +20,7 @@ const styles = {
 };
 
 const SearchMovieList = (props) => {
-  const {
-    foundMovies, selectFoundMovie, changeTextInSearchForm, classes,
-  } = props;
+  const { changeTextInSearchForm, classes, ...listProps } = props;
 
   return (
     <Grid container className={classes.root}>
@@ -37,16 +34,14 @@ const SearchMovieList = (props) => {
         />
       </Grid>
       <Grid item xs={12} className={classes.list}>
-        <MovieList movies={foundMovies} selectMovie={selectFoundMovie} />
+        <MovieList {...listProps} />
       </Grid>
     </Grid>
   );
 };
 
 SearchMovieList.propTypes = {
-  foundMovies: ImmutablePropTypes.list.isRequired,
   classes: PropTypes.object.isRequired,
-  selectFoundMovie: PropTypes.func.isRequired,
   changeTextInSearchForm: PropTypes.func.isRequired,
 };
 
