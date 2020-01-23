@@ -9,7 +9,6 @@ import Router from 'routing/Router';
 const store = configureStore();
 
 const defaultTheme = createMuiTheme();
-console.log(defaultTheme);
 const theme = createMuiTheme({
   palette: {
     primary: {
