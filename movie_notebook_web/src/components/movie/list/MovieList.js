@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import { MovieRecord, getPosterPath } from 'api/movieApi';
+import { MovieRecord, getSmallPosterPath } from 'api/movieApi';
 
 const styles = {
 };
@@ -45,7 +45,7 @@ MovieList.propTypes = {
 const MovieItem = ({ movie, selected, selectMovie }) => (
   <ListItem button selected={selected} onClick={selectMovie}>
     <ListItemAvatar>
-      <Avatar src={getPosterPath(movie)} />
+      <Avatar src={getSmallPosterPath(movie)} />
     </ListItemAvatar>
     <ListItemText
       primary={movie.title}
