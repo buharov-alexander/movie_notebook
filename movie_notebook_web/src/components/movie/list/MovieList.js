@@ -11,6 +11,9 @@ import Avatar from '@material-ui/core/Avatar';
 import { MovieRecord, getSmallPosterPath } from 'api/movieApi';
 
 const styles = {
+  root: {
+    padding: 0,
+  },
 };
 
 const MovieList = ({
