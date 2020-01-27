@@ -15,8 +15,8 @@ const theme = createMuiTheme({
       main: lime[600],
     },
     secondary: {
-      main: purple[400],
-      light: purple[50]
+      main: purple[600],
+      light: purple[50],
     },
     action: {
       hover: fade(purple[600], defaultTheme.palette.action.hoverOpacity),

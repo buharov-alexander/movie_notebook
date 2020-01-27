@@ -48,7 +48,9 @@ MovieList.propTypes = {
 const MovieItem = ({ movie, selected, selectMovie }) => (
   <ListItem button selected={selected} onClick={selectMovie}>
     <ListItemAvatar>
-      <Avatar src={getSmallPosterPath(movie)} />
+      <Avatar src={getSmallPosterPath(movie)}>
+        {movie.originalTitle[0]}
+      </Avatar>
     </ListItemAvatar>
     <ListItemText
       primary={movie.title}
