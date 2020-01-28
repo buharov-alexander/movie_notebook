@@ -28,7 +28,7 @@ class SearchPage extends PureComponent {
 
   render() {
     const {
-      selectedIndex, foundMovies,
+      selectedIndex, foundMovies, saveMovie,
     } = this.props;
 
     const masterProps = {
@@ -37,12 +37,17 @@ class SearchPage extends PureComponent {
       selectMovie: this.openDetails,
       changeTextInSearchForm: this.changeTextInSearchForm,
     };
+
+    const detailsProps = {
+      movie: foundMovies.get(selectedIndex),
+      saveMovie,
+    };
     return (
       <MasterDetails
         MasterType={SearchMasterMovie}
         masterProps={masterProps}
         DetailsType={MovieDetails}
-        detailsProps={{ movie: foundMovies.get(selectedIndex) }}
+        detailsProps={detailsProps}
       />
     );
   }
@@ -60,6 +65,7 @@ SearchPage.propTypes = {
   selectFoundMovie: PropTypes.func.isRequired,
   searchMovies: PropTypes.func.isRequired,
   setTappingTimeout: PropTypes.func.isRequired,
+  saveMovie: PropTypes.func.isRequired,
 };
 
 export default withRouter(SearchPage);

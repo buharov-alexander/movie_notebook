@@ -20,3 +20,10 @@ export const movieListRequest = () => fetch('/mnb/movie/list')
 export const searchMovieRequest = ({ query }) => fetch(`/mnb/tmbd/movie/search?query=${query}`)
   .then((response) => response.json())
   .then((response) => ({ foundMovies: List(response.map((movie) => MovieRecord(movie))) }));
+
+export const saveMovieRequest = ({ tmdbMovieId }) => fetch(
+  `/mnb/tmbd/movie/${tmdbMovieId}`,
+  { method: 'post' },
+)
+  .then((response) => response.json())
+  .then((response) => ({ movie: MovieRecord(response) }));

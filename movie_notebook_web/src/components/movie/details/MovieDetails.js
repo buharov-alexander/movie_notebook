@@ -39,7 +39,7 @@ const styles = (theme) => ({
   },
 });
 
-const MovieDetails = ({ movie, classes }) => {
+const MovieDetails = ({ movie, saveMovie, classes }) => {
   if (!movie) {
     return null;
   }
@@ -75,6 +75,7 @@ const MovieDetails = ({ movie, classes }) => {
             variant="contained"
             color="secondary"
             className={classes.button}
+            onClick={() => saveMovie(movie.tmdbId)}
           >
             Save
           </Button>
@@ -91,6 +92,7 @@ MovieDetails.defaultProps = {
 MovieDetails.propTypes = {
   classes: PropTypes.object.isRequired,
   movie: ImmutablePropTypes.recordOf(MovieRecord),
+  saveMovie: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MovieDetails);
