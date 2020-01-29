@@ -24,5 +24,5 @@ export const saveMovie = (tmdbMovieId) => (dispatch) => {
     params: { tmdbMovieId },
     dispatch,
     type: 'saveMovie',
-  }).then((movies) => dispatch({ type: SAVE_MOVIE, payload: movies }));
+  }).then((movie) => dispatch({ type: SAVE_MOVIE, payload: movie }));
 };
