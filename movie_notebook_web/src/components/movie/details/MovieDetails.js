@@ -36,15 +36,12 @@ const styles = (theme) => ({
   },
   button: {
     margin: '20px',
+    width: '100px',
   },
 });
 
-const MovieDetails = ({ movie, saveMovie, classes }) => {
-  if (!movie) {
-    return null;
-  }
-
-  const poster = movie.posterPath ? (
+const getPosterCard = (movie, classes) => (
+  movie.posterPath ? (
     <Hidden xsDown>
       <Box>
         <CardMedia
@@ -53,12 +50,35 @@ const MovieDetails = ({ movie, saveMovie, classes }) => {
         />
       </Box>
     </Hidden>
-  ) : null;
+  ) : null
+);
+
+const getButton = (movie, saveMovie, deleteMovie, classes) => {
+  const label = movie.id ? 'Delete' : 'Save';
+  const func = movie.id ? deleteMovie : saveMovie;
+  return (
+    <Button
+      variant="contained"
+      color="secondary"
+      className={classes.button}
+      onClick={() => func(movie)}
+    >
+      {label}
+    </Button>
+  );
+};
+
+const MovieDetails = ({
+  movie, saveMovie, deleteMovie, classes,
+}) => {
+  if (!movie) {
+    return null;
+  }
 
   return (
     <Card className={classes.root}>
       <Box display="flex">
-        {poster}
+        {getPosterCard(movie, classes)}
         <Box className={classes.details}>
           <CardHeader
             title={movie.title}
@@ -71,14 +91,7 @@ const MovieDetails = ({ movie, saveMovie, classes }) => {
               {movie.description}
             </Typography>
           </CardContent>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            onClick={() => saveMovie(movie.tmdbId)}
-          >
-            Save
-          </Button>
+          {getButton(movie, saveMovie, deleteMovie, classes)}
         </Box>
       </Box>
     </Card>
@@ -93,6 +106,7 @@ MovieDetails.propTypes = {
   classes: PropTypes.object.isRequired,
   movie: ImmutablePropTypes.recordOf(MovieRecord),
   saveMovie: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MovieDetails);

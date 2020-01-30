@@ -1,6 +1,7 @@
 export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const SELECT_MOVIE = 'SELECT_MOVIE';
 export const SAVE_MOVIE = 'SAVE_MOVIE';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
 
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const SELECT_FOUND_MOVIE = 'SELECT_FOUND_MOVIE';

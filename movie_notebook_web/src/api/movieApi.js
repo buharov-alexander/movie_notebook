@@ -21,9 +21,15 @@ export const searchMovieRequest = ({ query }) => fetch(`/mnb/tmbd/movie/search?q
   .then((response) => response.json())
   .then((response) => ({ foundMovies: List(response.map((movie) => MovieRecord(movie))) }));
 
-export const saveMovieRequest = ({ tmdbMovieId }) => fetch(
-  `/mnb/tmbd/movie/${tmdbMovieId}`,
+export const saveMovieRequest = ({ tmdbId }) => fetch(
+  `/mnb/tmbd/movie/${tmdbId}`,
   { method: 'post' },
 )
   .then((response) => response.json())
   .then((response) => ({ movie: MovieRecord(response) }));
+
+export const deleteMovieRequest = ({ id }) => fetch(
+  `/mnb/movie/${id}`,
+  { method: 'delete' },
+)
+  .then(() => id);

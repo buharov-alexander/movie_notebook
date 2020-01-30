@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMovieList, selectMovie, saveMovie } from './moviesActions';
+import {
+  fetchMovieList, selectMovie, saveMovie, deleteMovie,
+} from './moviesActions';
 import MoviesPage from './MoviesPage';
 
 const Container = (props) => <MoviesPage {...props} />;
@@ -17,5 +19,6 @@ export default connect(
     fetchMovieList,
     selectMovie,
     saveMovie,
+    deleteMovie,
   },
 )(Container);

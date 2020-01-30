@@ -28,7 +28,7 @@ class SearchPage extends PureComponent {
 
   render() {
     const {
-      selectedIndex, foundMovies, saveMovie,
+      selectedIndex, foundMovies, saveMovie, deleteMovie,
     } = this.props;
 
     const masterProps = {
@@ -41,6 +41,7 @@ class SearchPage extends PureComponent {
     const detailsProps = {
       movie: foundMovies.get(selectedIndex),
       saveMovie,
+      deleteMovie,
     };
     return (
       <MasterDetails
@@ -66,6 +67,7 @@ SearchPage.propTypes = {
   searchMovies: PropTypes.func.isRequired,
   setTappingTimeout: PropTypes.func.isRequired,
   saveMovie: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 };
 
 export default withRouter(SearchPage);

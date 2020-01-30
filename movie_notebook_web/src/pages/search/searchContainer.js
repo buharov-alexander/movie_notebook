@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { TYPPING_TIMEOUT } from 'constants/actionTypes';
-import { saveMovie } from 'pages/movies/moviesActions';
+import { saveMovie, deleteMovie } from 'pages/movies/moviesActions';
 import { searchMovies, selectFoundMovie } from './searchActions';
 import SearchPage from './SearchPage';
 
@@ -20,6 +20,7 @@ export default connect(
     searchMovies,
     selectFoundMovie,
     saveMovie,
+    deleteMovie,
     setTappingTimeout: (timeoutId) => (dispatch) => dispatch({
       type: TYPPING_TIMEOUT,
       payload: { timeoutId },

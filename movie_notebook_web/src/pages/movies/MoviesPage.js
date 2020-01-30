@@ -20,13 +20,16 @@ class MoviesPage extends PureComponent {
   }
 
   render() {
-    const { movies, selectedIndex, saveMovie } = this.props;
+    const {
+      movies, selectedIndex, saveMovie, deleteMovie,
+    } = this.props;
+
     return (
       <MasterDetails
         MasterType={MasterMovie}
         masterProps={{ movies, selectedIndex, selectMovie: this.openDetails }}
         DetailsType={MovieDetails}
-        detailsProps={{ movie: movies.get(selectedIndex), saveMovie }}
+        detailsProps={{ movie: movies.get(selectedIndex), saveMovie, deleteMovie }}
       />
     );
   }
@@ -43,6 +46,7 @@ MoviesPage.propTypes = {
   fetchMovieList: PropTypes.func.isRequired,
   selectMovie: PropTypes.func.isRequired,
   saveMovie: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 };
 
 export default withRouter(MoviesPage);
