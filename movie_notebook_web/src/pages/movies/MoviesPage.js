@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import MasterMovie from 'components/movie/master/MasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
+import { GET_MOVIE_DETAILS_PAGE } from 'constants/pageTypes';
 
 class MoviesPage extends PureComponent {
   componentDidMount() {
@@ -14,9 +15,9 @@ class MoviesPage extends PureComponent {
   }
 
   openDetails = (movie, index) => {
-    const { selectMovie, history } = this.props;
+    const { selectMovie, history, selectPage } = this.props;
     selectMovie(index);
-    history.push(`/movies/details/${movie.tmdbId}`);
+    selectPage(GET_MOVIE_DETAILS_PAGE(movie.tmdbId), history);
   }
 
   render() {
@@ -47,6 +48,7 @@ MoviesPage.propTypes = {
   selectMovie: PropTypes.func.isRequired,
   saveMovie: PropTypes.func.isRequired,
   deleteMovie: PropTypes.func.isRequired,
+  selectPage: PropTypes.func.isRequired,
 };
 
 export default withRouter(MoviesPage);

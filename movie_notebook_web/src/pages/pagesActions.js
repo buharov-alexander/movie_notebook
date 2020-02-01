@@ -1,20 +1,7 @@
-import {
-  SEARCH_PAGE, MOVIES_PAGE,
-} from 'constants/pageTypes';
-import {
-  SELECT_PAGE, PAGE_CHANGED,
-} from 'constants/actionTypes';
+import { SELECT_PAGE, PAGE_CHANGED } from 'constants/actionTypes';
 
 export const selectPage = (activePage, history) => (dispatch) => {
-  switch (activePage) {
-    case SEARCH_PAGE: {
-      history.push(SEARCH_PAGE);
-      break;
-    }
-    default: {
-      history.push(MOVIES_PAGE);
-    }
-  }
+  history.push(activePage);
   dispatch({ type: SELECT_PAGE, payload: { activePage } });
 };
 

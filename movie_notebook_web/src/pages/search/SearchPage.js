@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import SearchMasterMovie from 'components/movie/master/SearchMasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
+import { GET_SEARCH_DETAILS_PAGE } from 'constants/pageTypes';
 
 class SearchPage extends PureComponent {
   changeTextInSearchForm = (text) => {
@@ -21,10 +22,10 @@ class SearchPage extends PureComponent {
   };
 
   openDetails = (movie, index) => {
-    const { selectFoundMovie, history } = this.props;
+    const { selectFoundMovie, history, selectPage } = this.props;
     selectFoundMovie(index);
-    history.push(`/search/details/${movie.tmdbId}`);
-  }
+    selectPage(GET_SEARCH_DETAILS_PAGE(movie.tmdbId), history);
+  };
 
   render() {
     const {
@@ -68,6 +69,7 @@ SearchPage.propTypes = {
   setTappingTimeout: PropTypes.func.isRequired,
   saveMovie: PropTypes.func.isRequired,
   deleteMovie: PropTypes.func.isRequired,
+  selectPage: PropTypes.func.isRequired,
 };
 
 export default withRouter(SearchPage);

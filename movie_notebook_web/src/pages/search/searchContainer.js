@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { TYPPING_TIMEOUT } from 'constants/actionTypes';
 import { saveMovie, deleteMovie } from 'pages/movies/moviesActions';
+import { selectPage } from 'pages/pagesActions';
 import { searchMovies, selectFoundMovie } from './searchActions';
 import SearchPage from './SearchPage';
 
@@ -25,5 +26,6 @@ export default connect(
       type: TYPPING_TIMEOUT,
       payload: { timeoutId },
     }),
+    selectPage,
   },
 )(Container);

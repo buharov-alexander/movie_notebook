@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { selectPage } from 'pages/pagesActions';
 import {
   fetchMovieList, selectMovie, saveMovie, deleteMovie,
 } from './moviesActions';
@@ -20,5 +21,6 @@ export default connect(
     selectMovie,
     saveMovie,
     deleteMovie,
+    selectPage,
   },
 )(Container);
