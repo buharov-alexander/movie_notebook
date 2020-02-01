@@ -1,7 +1,7 @@
 import { Record } from 'immutable';
 
 import {
-  SELECT_PAGE,
+  PAGE_CHANGED,
 } from 'constants/actionTypes';
 import {
   MOVIES_PAGE,
@@ -13,9 +13,9 @@ const PagesState = Record({
 
 export default function moviesReducer(state = PagesState({}), action) {
   switch (action.type) {
-    case SELECT_PAGE: {
+    case PAGE_CHANGED: {
       return state.merge({
-        activePage: action.payload.activePage,
+        activePage: action.payload.page,
       });
     }
     default:

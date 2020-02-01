@@ -1,19 +1,23 @@
 import {
-  SEARCH_PAGE,
+  SEARCH_PAGE, MOVIES_PAGE,
 } from 'constants/pageTypes';
 import {
-  SELECT_PAGE,
+  SELECT_PAGE, PAGE_CHANGED,
 } from 'constants/actionTypes';
 
 export const selectPage = (activePage, history) => (dispatch) => {
   switch (activePage) {
     case SEARCH_PAGE: {
-      history.push('/search');
+      history.push(SEARCH_PAGE);
       break;
     }
     default: {
-      history.push('/movies');
+      history.push(MOVIES_PAGE);
     }
   }
   dispatch({ type: SELECT_PAGE, payload: { activePage } });
+};
+
+export const pageChanged = (page) => (dispatch) => {
+  dispatch({ type: PAGE_CHANGED, payload: { page } });
 };

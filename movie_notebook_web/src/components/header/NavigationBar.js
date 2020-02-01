@@ -17,23 +17,26 @@ const styles = {
   },
 };
 
-const NavigationBar = ({ classes, activePage, selectPage }) => (
-  <div className={classes.root}>
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" color="inherit" className={classes.grow}>
-          Movie Notebook
-        </Typography>
-        <IconButton
-          color="inherit"
-          onClick={() => selectPage(activePage === MOVIES_PAGE ? SEARCH_PAGE : MOVIES_PAGE)}
-        >
-          {activePage === MOVIES_PAGE ? <SearchIcon /> : <ListIcon />}
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  </div>
-);
+const NavigationBar = ({ classes, activePage, selectPage }) => {
+  const isMoviePage = activePage.startsWith(MOVIES_PAGE);
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            Movie Notebook
+          </Typography>
+          <IconButton
+            color="inherit"
+            onClick={() => selectPage(isMoviePage ? SEARCH_PAGE : MOVIES_PAGE)}
+          >
+            {isMoviePage ? <SearchIcon /> : <ListIcon />}
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
 
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Pages from './Pages';
-import { selectPage } from './pagesActions';
+import { selectPage, pageChanged } from './pagesActions';
 
 const Container = (props) => <Pages {...props} />;
 
@@ -14,5 +14,6 @@ export default connect(
   mapStateToProps,
   {
     selectPage,
+    pageChanged,
   },
 )(Container);

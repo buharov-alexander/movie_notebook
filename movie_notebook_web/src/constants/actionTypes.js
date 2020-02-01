@@ -8,6 +8,7 @@ export const SELECT_FOUND_MOVIE = 'SELECT_FOUND_MOVIE';
 export const TYPPING_TIMEOUT = 'TYPPING_TIMEOUT';
 
 export const SELECT_PAGE = 'SELECT_PAGE';
+export const PAGE_CHANGED = 'PAGE_CHANGED';
 
 export const REQUEST = 'REQUEST';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';

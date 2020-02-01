@@ -1,2 +1,2 @@
-export const MOVIES_PAGE = 'MOVIES_PAGE';
-export const SEARCH_PAGE = 'SEARCH_PAGE';
+export const MOVIES_PAGE = '/movies';
+export const SEARCH_PAGE = '/search';
