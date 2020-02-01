@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { withRouter } from 'react-router-dom';
 
+import RemoveIcon from '@material-ui/icons/HighlightOff';
 import MasterMovie from 'components/movie/master/MasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
@@ -24,6 +25,13 @@ class MoviesPage extends PureComponent {
       movies, selectedTmdbId, saveMovie, deleteMovie, selectMovie,
     } = this.props;
 
+    const masterProps = {
+      movies,
+      selectedTmdbId,
+      selectMovie: this.openDetails,
+      secondaryAction: (movie) => (movie.id ? null : <RemoveIcon color="primary" />),
+    };
+
     const detailsProps = {
       movie: movies.find((movie) => movie.tmdbId === selectedTmdbId),
       selectMovie,
@@ -34,7 +42,7 @@ class MoviesPage extends PureComponent {
     return (
       <MasterDetails
         MasterType={MasterMovie}
-        masterProps={{ movies, selectedTmdbId, selectMovie: this.openDetails }}
+        masterProps={masterProps}
         DetailsType={MovieDetails}
         detailsProps={detailsProps}
       />

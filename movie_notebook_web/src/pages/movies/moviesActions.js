@@ -34,5 +34,5 @@ export const deleteMovie = ({ id }) => (dispatch) => {
     params: { id },
     dispatch,
     type: 'deleteMovie',
-  }).then(() => dispatch({ type: DELETE_MOVIE, payload: id }));
+  }).then(() => dispatch({ type: DELETE_MOVIE, payload: { id } }));
 };

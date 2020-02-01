@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { MovieRecord, getSmallPosterPath } from 'api/movieApi';
 
 const styles = {
@@ -19,6 +20,7 @@ const styles = {
 const MovieList = ({
   movies,
   selectMovie,
+  secondaryAction,
   selectedTmdbId,
   classes,
 }) => (
@@ -29,6 +31,7 @@ const MovieList = ({
         key={movie.tmdbId}
         selected={movie.tmdbId === selectedTmdbId}
         selectMovie={() => selectMovie(movie)}
+        secondaryAction={secondaryAction}
       />
     ))}
   </List>
@@ -43,9 +46,12 @@ MovieList.propTypes = {
   classes: PropTypes.object.isRequired,
   selectedTmdbId: PropTypes.number,
   selectMovie: PropTypes.func.isRequired,
+  secondaryAction: PropTypes.func.isRequired,
 };
 
-const MovieItem = ({ movie, selected, selectMovie }) => (
+const MovieItem = ({
+  movie, selected, selectMovie, secondaryAction,
+}) => (
   <ListItem button selected={selected} onClick={selectMovie}>
     <ListItemAvatar>
       <Avatar src={getSmallPosterPath(movie)}>
@@ -56,6 +62,9 @@ const MovieItem = ({ movie, selected, selectMovie }) => (
       primary={movie.title}
       secondary={movie.originalTitle}
     />
+    <ListItemSecondaryAction>
+      {secondaryAction(movie)}
+    </ListItemSecondaryAction>
   </ListItem>
 );
 
@@ -63,6 +72,7 @@ MovieItem.propTypes = {
   movie: ImmutablePropTypes.recordOf(MovieRecord).isRequired,
   selected: PropTypes.bool.isRequired,
   selectMovie: PropTypes.func.isRequired,
+  secondaryAction: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MovieList);

@@ -1,7 +1,7 @@
 import { Record, List } from 'immutable';
 
 import {
-  SEARCH_MOVIES, SELECT_FOUND_MOVIE, TYPPING_TIMEOUT, SAVE_MOVIE,
+  SEARCH_MOVIES, SELECT_FOUND_MOVIE, TYPPING_TIMEOUT, SAVE_MOVIE, DELETE_MOVIE,
 } from 'constants/actionTypes';
 
 const SearchState = Record({
@@ -30,8 +30,18 @@ export default function moviesReducer(state = SearchState({}), action) {
     case SAVE_MOVIE: {
       const savedMovie = action.payload.movie;
       const index = state.list.findIndex((movie) => movie.tmdbId === savedMovie.tmdbId);
+      if (index === -1) {
+        return state;
+      }
       return state.merge({
         list: state.list.set(index, savedMovie),
+      });
+    }
+    case DELETE_MOVIE: {
+      const updatedList = state.list
+        .map((movie) => (movie.id === action.payload.id ? movie.set('id', null) : movie));
+      return state.merge({
+        list: updatedList,
       });
     }
     default:

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { withRouter } from 'react-router-dom';
 
+import AddIcon from '@material-ui/icons/AddCircleOutline';
 import SearchMasterMovie from 'components/movie/master/SearchMasterMovie';
 import MovieDetails from 'components/movie/details/MovieDetails';
 import MasterDetails from 'components/master-details/MasterDetails';
@@ -36,6 +37,7 @@ class SearchPage extends PureComponent {
       selectedTmdbId,
       selectMovie: this.openDetails,
       changeTextInSearchForm: this.changeTextInSearchForm,
+      secondaryAction: (movie) => (movie.id ? <AddIcon color="primary" /> : null),
     };
 
     const detailsProps = {
