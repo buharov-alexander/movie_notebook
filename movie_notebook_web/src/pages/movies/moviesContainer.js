@@ -11,7 +11,7 @@ const Container = (props) => <MoviesPage {...props} />;
 
 const mapStateToProps = (state) => ({
   movies: state.movies.list,
-  selectedIndex: state.movies.selectedIndex,
+  selectedTmdbId: state.movies.selectedTmdbId,
 });
 
 export default connect(

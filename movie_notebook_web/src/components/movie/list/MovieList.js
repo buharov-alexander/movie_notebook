@@ -19,29 +19,29 @@ const styles = {
 const MovieList = ({
   movies,
   selectMovie,
-  selectedIndex,
+  selectedTmdbId,
   classes,
 }) => (
   <List className={classes.root}>
-    {movies.map((movie, index) => (
+    {movies.map((movie) => (
       <MovieItem
         movie={movie}
         key={movie.tmdbId}
-        selected={index === selectedIndex}
-        selectMovie={() => selectMovie(movie, index)}
+        selected={movie.tmdbId === selectedTmdbId}
+        selectMovie={() => selectMovie(movie)}
       />
     ))}
   </List>
 );
 
 MovieList.defaultProps = {
-  selectedIndex: null,
+  selectedTmdbId: null,
 };
 
 MovieList.propTypes = {
   movies: ImmutablePropTypes.list.isRequired,
   classes: PropTypes.object.isRequired,
-  selectedIndex: PropTypes.number,
+  selectedTmdbId: PropTypes.number,
   selectMovie: PropTypes.func.isRequired,
 };
 

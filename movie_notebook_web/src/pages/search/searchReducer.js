@@ -6,7 +6,7 @@ import {
 
 const SearchState = Record({
   list: List(),
-  selectedIndex: null,
+  selectedTmdbId: null,
   tappingTimeoutId: 0,
 });
 
@@ -19,7 +19,7 @@ export default function moviesReducer(state = SearchState({}), action) {
     }
     case SELECT_FOUND_MOVIE: {
       return state.merge({
-        selectedIndex: action.payload.selectedIndex,
+        selectedTmdbId: action.payload.id,
       });
     }
     case TYPPING_TIMEOUT: {

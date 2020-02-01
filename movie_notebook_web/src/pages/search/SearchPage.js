@@ -21,26 +21,26 @@ class SearchPage extends PureComponent {
     setTappingTimeout(timeoutId);
   };
 
-  openDetails = (movie, index) => {
-    const { selectFoundMovie, history, selectPage } = this.props;
-    selectFoundMovie(index);
+  openDetails = (movie) => {
+    const { history, selectPage } = this.props;
     selectPage(GET_SEARCH_DETAILS_PAGE(movie.tmdbId), history);
   };
 
   render() {
     const {
-      selectedIndex, foundMovies, saveMovie, deleteMovie,
+      selectedTmdbId, foundMovies, selectFoundMovie, saveMovie, deleteMovie,
     } = this.props;
 
     const masterProps = {
       movies: foundMovies,
-      selectedIndex,
+      selectedTmdbId,
       selectMovie: this.openDetails,
       changeTextInSearchForm: this.changeTextInSearchForm,
     };
 
     const detailsProps = {
-      movie: foundMovies.get(selectedIndex),
+      movie: foundMovies.find((movie) => movie.tmdbId === selectedTmdbId),
+      selectMovie: selectFoundMovie,
       saveMovie,
       deleteMovie,
     };
@@ -56,12 +56,12 @@ class SearchPage extends PureComponent {
 }
 
 SearchPage.defaultProps = {
-  selectedIndex: null,
+  selectedTmdbId: null,
 };
 
 SearchPage.propTypes = {
   foundMovies: ImmutablePropTypes.list.isRequired,
-  selectedIndex: PropTypes.number,
+  selectedTmdbId: PropTypes.number,
   tappingTimeoutId: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired,
   selectFoundMovie: PropTypes.func.isRequired,

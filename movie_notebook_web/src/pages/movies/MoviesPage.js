@@ -14,35 +14,41 @@ class MoviesPage extends PureComponent {
     fetchMovieList();
   }
 
-  openDetails = (movie, index) => {
-    const { selectMovie, history, selectPage } = this.props;
-    selectMovie(index);
+  openDetails = (movie) => {
+    const { history, selectPage } = this.props;
     selectPage(GET_MOVIE_DETAILS_PAGE(movie.tmdbId), history);
   }
 
   render() {
     const {
-      movies, selectedIndex, saveMovie, deleteMovie,
+      movies, selectedTmdbId, saveMovie, deleteMovie, selectMovie,
     } = this.props;
+
+    const detailsProps = {
+      movie: movies.find((movie) => movie.tmdbId === selectedTmdbId),
+      selectMovie,
+      saveMovie,
+      deleteMovie,
+    };
 
     return (
       <MasterDetails
         MasterType={MasterMovie}
-        masterProps={{ movies, selectedIndex, selectMovie: this.openDetails }}
+        masterProps={{ movies, selectedTmdbId, selectMovie: this.openDetails }}
         DetailsType={MovieDetails}
-        detailsProps={{ movie: movies.get(selectedIndex), saveMovie, deleteMovie }}
+        detailsProps={detailsProps}
       />
     );
   }
 }
 
 MoviesPage.defaultProps = {
-  selectedIndex: null,
+  selectedTmdbId: null,
 };
 
 MoviesPage.propTypes = {
   movies: ImmutablePropTypes.list.isRequired,
-  selectedIndex: PropTypes.number,
+  selectedTmdbId: PropTypes.number,
   history: PropTypes.object.isRequired,
   fetchMovieList: PropTypes.func.isRequired,
   selectMovie: PropTypes.func.isRequired,

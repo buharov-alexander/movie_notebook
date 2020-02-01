@@ -28,9 +28,10 @@ const SmallMasterDetails = ({
     <Route exact path={path}>
       <MasterType {...masterProps} />
     </Route>
-    <Route path={`${path}/details/:id`}>
-      <DetailsType {...detailsProps} />
-    </Route>
+    <Route
+      path={`${path}/details/:id`}
+      render={(props) => <DetailsType {...detailsProps} {...props} />}
+    />
   </Switch>
 );
 
@@ -57,12 +58,10 @@ const LargeMasterDetails = ({
     </Grid>
     <Grid item xs={8}>
       <Switch>
-        <Route exact path={path}>
-          <DetailsType {...detailsProps} />
-        </Route>
-        <Route path={`${path}/details/:id`}>
-          <DetailsType {...detailsProps} />
-        </Route>
+        <Route
+          path={`${path}/details/:id`}
+          render={(props) => <DetailsType {...detailsProps} {...props} />}
+        />
       </Switch>
     </Grid>
   </Grid>

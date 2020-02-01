@@ -11,7 +11,7 @@ const Container = (props) => <SearchPage {...props} />;
 
 const mapStateToProps = (state) => ({
   foundMovies: state.search.list,
-  selectedIndex: state.search.selectedIndex,
+  selectedTmdbId: state.search.selectedTmdbId,
   tappingTimeoutId: state.search.tappingTimeoutId,
 });
 

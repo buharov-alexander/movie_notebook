@@ -20,6 +20,6 @@ export const searchMovies = (query) => (dispatch) => {
   }).then((foundMovies) => dispatch({ type: SEARCH_MOVIES, payload: foundMovies }));
 };
 
-export const selectFoundMovie = (selectedIndex) => (dispatch) => {
-  dispatch({ type: SELECT_FOUND_MOVIE, payload: { selectedIndex } });
+export const selectFoundMovie = (id) => (dispatch) => {
+  dispatch({ type: SELECT_FOUND_MOVIE, payload: { id } });
 };

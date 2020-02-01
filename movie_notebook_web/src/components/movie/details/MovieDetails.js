@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -69,8 +69,15 @@ const getButton = (movie, saveMovie, deleteMovie, classes) => {
 };
 
 const MovieDetails = ({
-  movie, saveMovie, deleteMovie, classes,
+  movie, selectMovie, saveMovie, deleteMovie, classes, match,
 }) => {
+  useEffect(
+    () => {
+      selectMovie(Number.parseInt(match.params.id, 10));
+    },
+    [match.params.id, selectMovie],
+  );
+
   if (!movie) {
     return null;
   }
@@ -104,7 +111,11 @@ MovieDetails.defaultProps = {
 
 MovieDetails.propTypes = {
   classes: PropTypes.object.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+  }).isRequired,
   movie: ImmutablePropTypes.recordOf(MovieRecord),
+  selectMovie: PropTypes.func.isRequired,
   saveMovie: PropTypes.func.isRequired,
   deleteMovie: PropTypes.func.isRequired,
 };

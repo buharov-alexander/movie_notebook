@@ -6,7 +6,7 @@ import {
 
 const MoviesState = Record({
   list: List(),
-  selectedIndex: null,
+  selectedTmdbId: null,
 });
 
 export default function moviesReducer(state = MoviesState({}), action) {
@@ -18,7 +18,7 @@ export default function moviesReducer(state = MoviesState({}), action) {
     }
     case SELECT_MOVIE: {
       return state.merge({
-        selectedIndex: action.payload.selectedIndex,
+        selectedTmdbId: action.payload.id,
       });
     }
     default:

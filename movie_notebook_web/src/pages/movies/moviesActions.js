@@ -15,8 +15,8 @@ export const fetchMovieList = () => (dispatch) => {
   }).then((movies) => dispatch({ type: FETCH_MOVIES, payload: movies }));
 };
 
-export const selectMovie = (selectedIndex) => (dispatch) => {
-  dispatch({ type: SELECT_MOVIE, payload: { selectedIndex } });
+export const selectMovie = (id) => (dispatch) => {
+  dispatch({ type: SELECT_MOVIE, payload: { id } });
 };
 
 export const saveMovie = ({ tmdbId }) => (dispatch) => {
