@@ -7,8 +7,9 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import NavigationBar from 'components/header/NavigationBar';
 import MoviesPage from 'pages/movies/moviesContainer';
 import SearchPage from 'pages/search/searchContainer';
+import LoginPage from 'pages/login/loginContainer';
 import {
-  SEARCH_PAGE, MOVIES_PAGE,
+  SEARCH_PAGE, MOVIES_PAGE, LOGIN_PAGE,
 } from 'constants/pageTypes';
 
 const styles = {
@@ -20,7 +21,7 @@ const styles = {
 };
 
 const Pages = ({
-  classes, activePage, selectPage, pageChanged,
+  classes, activePage, username, selectPage, pageChanged,
 }) => {
   const history = useHistory();
 
@@ -33,7 +34,11 @@ const Pages = ({
 
   return (
     <div id="pages" className={classes.root}>
-      <NavigationBar activePage={activePage} selectPage={(page) => selectPage(page, history)} />
+      <NavigationBar
+        activePage={activePage}
+        username={username}
+        selectPage={(page) => selectPage(page, history)}
+      />
       <main>
         <Switch>
           <Route path={MOVIES_PAGE}>
@@ -41,6 +46,9 @@ const Pages = ({
           </Route>
           <Route path={SEARCH_PAGE}>
             <SearchPage />
+          </Route>
+          <Route path={LOGIN_PAGE}>
+            <LoginPage />
           </Route>
         </Switch>
       </main>
@@ -51,6 +59,7 @@ const Pages = ({
 Pages.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   selectPage: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
 };

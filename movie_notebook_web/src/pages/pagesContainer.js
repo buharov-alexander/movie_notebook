@@ -8,6 +8,7 @@ const Container = (props) => <Pages {...props} />;
 
 const mapStateToProps = (state) => ({
   activePage: state.pages.activePage,
+  username: state.login.username,
 });
 
 export default connect(

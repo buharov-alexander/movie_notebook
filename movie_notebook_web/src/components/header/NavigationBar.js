@@ -17,8 +17,21 @@ const styles = {
   },
 };
 
-const NavigationBar = ({ classes, activePage, selectPage }) => {
+const NavigationBar = ({
+  classes, activePage, username, selectPage,
+}) => {
   const isMoviePage = activePage.startsWith(MOVIES_PAGE);
+
+  const icon = (username
+    ? (
+      <IconButton
+        color="inherit"
+        onClick={() => selectPage(isMoviePage ? SEARCH_PAGE : MOVIES_PAGE)}
+      >
+        {isMoviePage ? <SearchIcon /> : <ListIcon />}
+      </IconButton>
+    ) : null);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -26,12 +39,7 @@ const NavigationBar = ({ classes, activePage, selectPage }) => {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Movie Notebook
           </Typography>
-          <IconButton
-            color="inherit"
-            onClick={() => selectPage(isMoviePage ? SEARCH_PAGE : MOVIES_PAGE)}
-          >
-            {isMoviePage ? <SearchIcon /> : <ListIcon />}
-          </IconButton>
+          {icon}
         </Toolbar>
       </AppBar>
     </div>
@@ -41,6 +49,7 @@ const NavigationBar = ({ classes, activePage, selectPage }) => {
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   selectPage: PropTypes.func.isRequired,
 };
 
