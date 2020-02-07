@@ -15,10 +15,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/*.json",
+                        "/static/js/*",
+                        "/static/css/*").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
-                .and().formLogin();
+                .and()
+                .formLogin().loginPage("/webui/login").permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Autowired
