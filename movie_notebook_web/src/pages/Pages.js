@@ -56,10 +56,14 @@ const Pages = ({
   );
 };
 
+Pages.defaultProps = {
+  username: null,
+};
+
 Pages.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   selectPage: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
 };

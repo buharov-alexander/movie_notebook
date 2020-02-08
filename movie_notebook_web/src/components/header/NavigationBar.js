@@ -46,10 +46,14 @@ const NavigationBar = ({
   );
 };
 
+NavigationBar.defaultProps = {
+  username: null,
+};
+
 NavigationBar.propTypes = {
   classes: PropTypes.object.isRequired,
   activePage: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   selectPage: PropTypes.func.isRequired,
 };
 
