@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Field, reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { MaterialTextField } from 'components/form/forms';
 
 const LoginForm = ({ classes }) => {
   return (
     <form className={classes.form} noValidate>
-      <TextField
+      <Field
+        component={MaterialTextField}
         variant="outlined"
         margin="normal"
         required
@@ -17,7 +19,8 @@ const LoginForm = ({ classes }) => {
         name="login"
         autoFocus
       />
-      <TextField
+      <Field
+        component={MaterialTextField}
         variant="outlined"
         margin="normal"
         required
@@ -44,4 +47,4 @@ LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default LoginForm;
+export default reduxForm({ form: 'LoginForm' })(LoginForm);
