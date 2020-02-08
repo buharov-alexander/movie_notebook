@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = () => {
+const LoginPage = ({ signIn }) => {
   const classes = useStyles();
 
   return (
@@ -38,10 +40,14 @@ const LoginPage = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <LoginForm classes={classes} />
+        <LoginForm classes={classes} signIn={signIn} />
       </div>
     </Container>
   );
+};
+
+LoginPage.propTypes = {
+  signIn: PropTypes.func.isRequired,
 };
 
 export default LoginPage;

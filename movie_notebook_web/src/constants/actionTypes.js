@@ -13,3 +13,6 @@ export const PAGE_CHANGED = 'PAGE_CHANGED';
 export const REQUEST = 'REQUEST';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
+
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
