@@ -17,5 +17,6 @@ module.exports = {
     'max-len': ['warn', { 'code': 120 }],
     'react/forbid-prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': ['error', { skipUndeclared: true }],
   }
 }
