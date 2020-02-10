@@ -16,16 +16,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/*.json",
+                    .antMatchers("/*.json",
                         "/static/js/*",
-                        "/static/css/*").permitAll()
-                .anyRequest().authenticated()
+                        "/static/css/*")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
                 .and()
-                .httpBasic()
+                    .httpBasic()
                 .and()
-                .formLogin().loginPage("/webui/login").permitAll()
+                    .formLogin()
+                    .loginPage("/webui/login")
+                    .failureUrl("/webui/login?error")
+                    .permitAll()
                 .and()
-                .logout().permitAll();
+                    .logout()
+                    .logoutUrl("/webui/logout")
+                    .permitAll();
     }
 
     @Autowired
