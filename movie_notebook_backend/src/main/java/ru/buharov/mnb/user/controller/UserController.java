@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping
-    public UserDTO getCurrentLoggedInUsername() {
+    public UserDTO getCurrentLoggedInUser() {
         return new UserDTO(userService.getCurrentLoggedInUser());
     }
 
