@@ -11,7 +11,7 @@ const styles = {
   },
   list: {
     overflow: 'auto',
-    height: 'calc(100vh - 80px)',
+    height: 'calc(100vh - 90px)',
   },
 };
 
