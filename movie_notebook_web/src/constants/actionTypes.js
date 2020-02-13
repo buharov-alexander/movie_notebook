@@ -16,3 +16,5 @@ export const REQUEST_FAILED = 'REQUEST_FAILED';
 
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const CURRENT_USER = 'CURRENT_USER';
