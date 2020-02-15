@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import ListIcon from '@material-ui/icons/List';
+import MoreIcon from '@material-ui/icons/MoreVert';
 import {
   MOVIES_PAGE, SEARCH_PAGE,
 } from 'constants/pageTypes';
@@ -22,15 +23,14 @@ const NavigationBar = ({
 }) => {
   const isMoviePage = activePage.startsWith(MOVIES_PAGE);
 
-  const icon = (username
-    ? (
-      <IconButton
-        color="inherit"
-        onClick={() => selectPage(isMoviePage ? SEARCH_PAGE : MOVIES_PAGE)}
-      >
-        {isMoviePage ? <SearchIcon /> : <ListIcon />}
-      </IconButton>
-    ) : null);
+  const pageIcon = (
+    <IconButton
+      color="inherit"
+      onClick={() => selectPage(isMoviePage ? SEARCH_PAGE : MOVIES_PAGE)}
+    >
+      {isMoviePage ? <SearchIcon /> : <ListIcon />}
+    </IconButton>
+  );
 
   return (
     <div className={classes.root}>
@@ -39,7 +39,8 @@ const NavigationBar = ({
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Movie Notebook
           </Typography>
-          {icon}
+          {username ? pageIcon : null}
+          {username ? <MoreIcon /> : null}
         </Toolbar>
       </AppBar>
     </div>

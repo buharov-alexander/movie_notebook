@@ -21,7 +21,7 @@ const styles = {
 };
 
 const Pages = ({
-  classes, activePage, username, selectPage, pageChanged,
+  classes, activePage, username, selectPage, pageChanged, getCurrentUser,
 }) => {
   const history = useHistory();
 
@@ -30,6 +30,12 @@ const Pages = ({
       pageChanged(history.location.pathname);
     },
     [history.location.pathname, pageChanged],
+  );
+
+  useEffect(
+    () => {
+      getCurrentUser();
+    }, [getCurrentUser],
   );
 
   return (
@@ -66,6 +72,7 @@ Pages.propTypes = {
   username: PropTypes.string,
   selectPage: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Pages);

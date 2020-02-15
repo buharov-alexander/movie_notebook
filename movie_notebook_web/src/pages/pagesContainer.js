@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { getCurrentUser } from 'pages/login/loginActions';
 import Pages from './Pages';
 import { selectPage, pageChanged } from './pagesActions';
 
@@ -16,5 +17,6 @@ export default connect(
   {
     selectPage,
     pageChanged,
+    getCurrentUser,
   },
 )(Container);
