@@ -31,7 +31,8 @@ public class UserController {
 
     @GetMapping
     public UserDTO getCurrentLoggedInUser() {
-        return new UserDTO(userService.getCurrentLoggedInUser());
+        UserEntity user = userService.getCurrentLoggedInUser();
+        return user == null ? new UserDTO() : new UserDTO(user);
     }
 
     @GetMapping(path = "list")

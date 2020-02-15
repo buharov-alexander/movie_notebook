@@ -18,7 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/*.json",
                         "/static/js/*",
-                        "/static/css/*")
+                        "/static/css/*",
+                        "/user")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

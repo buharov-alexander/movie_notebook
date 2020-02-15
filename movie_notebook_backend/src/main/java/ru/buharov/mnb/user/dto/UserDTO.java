@@ -9,7 +9,7 @@ import ru.buharov.mnb.user.domain.UserEntity;
 
 @Data
 @Builder
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class UserDTO {
     private Long id;
