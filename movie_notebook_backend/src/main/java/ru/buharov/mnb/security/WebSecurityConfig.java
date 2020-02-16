@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .logout()
-                    .logoutUrl("/webui/logout")
+                    .logoutUrl("/user/logout")
                     .permitAll();
     }
 

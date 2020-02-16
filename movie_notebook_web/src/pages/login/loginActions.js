@@ -4,7 +4,7 @@ import { selectPage } from 'pages/pagesActions';
 import {
   SIGN_IN_SUCCESS, SIGN_IN_FAILURE, LOGOUT_SUCCESS, CURRENT_USER,
 } from 'constants/actionTypes';
-import { MOVIES_PAGE } from 'constants/pageTypes';
+import { MOVIES_PAGE, LOGOUT_PAGE } from 'constants/pageTypes';
 
 export const signIn = ({ username, password, history }) => (dispatch) => {
   request({
@@ -22,14 +22,14 @@ export const signIn = ({ username, password, history }) => (dispatch) => {
   });
 };
 
-export const logout = ({ history }) => (dispatch) => {
+export const logout = (history) => (dispatch) => {
   request({
     operation: logoutRequest,
     dispatch,
     type: 'logout',
   }).then(() => {
     dispatch({ type: LOGOUT_SUCCESS });
-    selectPage(MOVIES_PAGE, history)(dispatch);
+    selectPage(LOGOUT_PAGE, history)(dispatch);
   });
 };
 

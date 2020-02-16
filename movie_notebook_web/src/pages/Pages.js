@@ -21,7 +21,7 @@ const styles = {
 };
 
 const Pages = ({
-  classes, activePage, username, selectPage, pageChanged, getCurrentUser,
+  classes, activePage, username, selectPage, pageChanged, getCurrentUser, logout,
 }) => {
   const history = useHistory();
 
@@ -44,6 +44,7 @@ const Pages = ({
         activePage={activePage}
         username={username}
         selectPage={(page) => selectPage(page, history)}
+        logout={() => logout(history)}
       />
       <main>
         <Switch>
@@ -73,6 +74,7 @@ Pages.propTypes = {
   selectPage: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   getCurrentUser: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Pages);

@@ -10,7 +10,7 @@ export const signInRequest = ({ username, password }) => fetch('/mnb/webui/login
   body: `username=${username}&password=${password}`,
 });
 
-export const logoutRequest = () => fetch('/mnb/webui/logout');
+export const logoutRequest = () => fetch('/mnb/user/logout');
 
 export const currentUserRequest = () => fetch('/mnb/user')
   .then((response) => response.json())

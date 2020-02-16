@@ -12,6 +12,7 @@ import ru.buharov.mnb.user.domain.UserRoleEnum;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -21,8 +22,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserIntegrationTest extends BasicIntegrationTest {
 
     @Test
-    void getUser_unauthorized_thenStatus401() throws Exception {
-        mvc.perform(get("/user")).andExpect(status().isUnauthorized());
+    void getUsers_unauthorized_thenStatus401() throws Exception {
+        mvc.perform(get("/users")).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void getUser_unauthorized_thenGetEmptyUser() throws Exception {
+        mvc.perform(get("/user"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", nullValue()))
+                .andExpect(jsonPath("$.username", nullValue()))
+                .andExpect(jsonPath("$.email", nullValue()));
     }
 
     @Test
