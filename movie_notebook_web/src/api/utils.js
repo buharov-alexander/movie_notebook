@@ -1,9 +1,17 @@
-
+import Cookies from 'js-cookie';
 import {
   REQUEST,
   REQUEST_SUCCESS,
   REQUEST_FAILED,
 } from 'constants/actionTypes';
+
+export const csrfFetch = (url, params) => {
+  const csrf = {
+    'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+  };
+  const headers = { headers: { ...params.headers, ...csrf } };
+  return fetch(url, { ...params, ...headers });
+};
 
 export const request = ({
   operation,
