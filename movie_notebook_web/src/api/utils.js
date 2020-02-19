@@ -5,7 +5,7 @@ import {
   REQUEST_FAILED,
 } from 'constants/actionTypes';
 
-export const csrfFetch = (url, params) => {
+export const csrfFetch = (url, params = {}) => {
   const csrf = {
     'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
   };
