@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -71,7 +72,8 @@ class UserIntegrationTest extends BasicIntegrationTest {
         String json = createUserJson("test");
 
         // create user
-        MvcResult result = mvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON_VALUE).content(json))
+        MvcResult result = mvc.perform(
+                post("/user").contentType(MediaType.APPLICATION_JSON_VALUE).content(json).with(csrf()))
                 .andExpect(status().isOk()).andReturn();
         checkUserCount(3);
 
@@ -79,7 +81,7 @@ class UserIntegrationTest extends BasicIntegrationTest {
         UserEntity createdUser = objectMapper.readValue(result.getResponse().getContentAsString(), UserEntity.class);
 
         // delete user
-        mvc.perform(delete("/user/{id}", createdUser.getId()))
+        mvc.perform(delete("/user/{id}", createdUser.getId()).with(csrf()))
                 .andExpect(status().isOk());
         checkUserCount(2);
     }

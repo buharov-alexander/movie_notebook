@@ -15,6 +15,7 @@ import ru.buharov.mnb.user.BasicIntegrationTest;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,7 +37,7 @@ class TmdbMovieIntegrationTest extends BasicIntegrationTest {
 
     @Test
     void saveMovie_unauthorized_thenStatus401() throws Exception {
-        mvc.perform(post("/tmbd/movie/238")).andExpect(status().isUnauthorized());
+        mvc.perform(post("/tmbd/movie/238").with(csrf())).andExpect(status().isUnauthorized());
     }
 
     @Test
@@ -62,7 +63,7 @@ class TmdbMovieIntegrationTest extends BasicIntegrationTest {
         List<MovieDTO> list = getMovieList();
         Assert.isTrue(list.stream().noneMatch(movieDTO -> movieDTO.getTmdbId() == MOVIE_ID));
 
-        mvc.perform(post("/tmbd/movie/238")).andExpect(status().isOk());
+        mvc.perform(post("/tmbd/movie/238").with(csrf())).andExpect(status().isOk());
 
         // check that movie is saved
         list = getMovieList();
