@@ -23,7 +23,11 @@ jobs:
           key: v1-dependencies-{{ checksum "movie_notebook_backend/pom.xml" }}
 
       # run tests!
-      - run: cd movie_notebook_backend && mvn test
+      - run: cd movie_notebook_backend && ./mvnw clean integration-test 
 
       - store_test_results:
           path: movie_notebook_backend/target/surefire-reports
+
+      - run:
+          name: Send report to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
