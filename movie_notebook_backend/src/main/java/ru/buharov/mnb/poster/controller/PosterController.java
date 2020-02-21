@@ -21,7 +21,7 @@ public class PosterController {
 
     @GetMapping(value = "/{posterType}",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getMoviePoster(@PathVariable PosterType posterType, @Param("path") String path) throws Exception {
+    public byte[] getMoviePoster(@PathVariable PosterType posterType, @Param("path") String path) {
         return posterService.getPoster(posterType, path);
     }
 }
