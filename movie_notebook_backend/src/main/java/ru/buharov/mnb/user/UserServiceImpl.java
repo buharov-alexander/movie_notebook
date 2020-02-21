@@ -18,6 +18,7 @@ import ru.buharov.mnb.user.domain.UserEntity;
 
 @Service
 @Validated
+@Transactional
 class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
@@ -42,14 +43,12 @@ class UserServiceImpl implements UserService {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
-    @Transactional
     public List<UserEntity> getUsers() {
         return ImmutableList.copyOf(userDAO.findAll());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
-    @Transactional
     public UserEntity createUser(UserEntity userEntity) {
         ValidatorUtil.validate(userEntity);
 
@@ -60,7 +59,6 @@ class UserServiceImpl implements UserService {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @Override
-    @Transactional
     public void deleteUser(@NotNull Long id) {
         Optional<UserEntity> user = userDAO.findById(id);
         if (!user.isPresent()) {

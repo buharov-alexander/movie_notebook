@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import ru.buharov.mnb.common.service.RequestService;
 import ru.buharov.mnb.movie.MovieService;
@@ -16,6 +17,7 @@ import ru.buharov.mnb.tmdb.dto.TmdbMovieDTO;
 
 @Service
 @Validated
+@Transactional
 class TmbdMovieServiceImpl implements TmdbMovieService {
 
     private static final String TMDB_SERVICE_URL = "https://api.themoviedb.org/3";

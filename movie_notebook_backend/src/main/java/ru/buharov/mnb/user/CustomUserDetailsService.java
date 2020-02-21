@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.buharov.mnb.user.domain.UserEntity;
 
 @Service
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserDAO userDAO;
@@ -23,7 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userDAO.findByUsername(username);
         if (user != null) {

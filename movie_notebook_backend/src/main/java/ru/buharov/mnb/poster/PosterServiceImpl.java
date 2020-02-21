@@ -15,6 +15,7 @@ import ru.buharov.mnb.tmdb.dto.PosterType;
 
 @Service
 @Validated
+@Transactional
 public class PosterServiceImpl implements PosterService {
 
     private static final String TMDB_IMAGE_SERVICE_URL = "https://image.tmdb.org/t/p";
@@ -32,7 +33,6 @@ public class PosterServiceImpl implements PosterService {
     }
 
     @Override
-    @Transactional
     public byte[] getPoster(@NotNull PosterType posterType, @NotBlank String posterPath) {
         try {
             String url = getUrl(posterPath, posterType);

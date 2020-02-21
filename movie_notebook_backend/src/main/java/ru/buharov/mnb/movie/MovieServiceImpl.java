@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import ru.buharov.mnb.common.validation.ValidatorUtil;
 import ru.buharov.mnb.movie.domain.MovieEntity;
@@ -13,6 +14,7 @@ import ru.buharov.mnb.user.UserService;
 
 @Service
 @Validated
+@Transactional
 class MovieServiceImpl implements MovieService {
 
     private UserService userService;
