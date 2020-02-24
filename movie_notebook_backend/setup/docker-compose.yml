@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db_postgres:
+    image: postgres
+    ports:
+    - 5433:5432
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=mnb_password
+    - POSTGRES_DB=mnb
+    volumes:
+    - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - mnb_service_data:/var/lib/postgresql/data
+  mnb_service:
+    image: buharovalexander/movie_notebook_backend:latest
+    ports:
+    - 8080:8080
+    environment:
+    - MNB_DATABASE_USER=postgres
+    - MNB_DATABASE_PASSWORD=mnb_password
+    - MNB_DATABASE_URL=db_postgres
+    - MNB_DATABASE_PORT=5432
+    depends_on:
+    - db_postgres
+volumes:
+  mnb_service_data:
