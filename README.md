@@ -32,9 +32,10 @@ Run Spring Boot application:
 ```
 
 ## Build docker image and run container
+To build docker image we use plugin `dockerfile-maven-plugin`.
 Build docker image:
 ```
-./mvnw dockerfile:push
+./mvnw dockerfile:build
 ```
 Push docker image to Docker Hub [repository](https://hub.docker.com/repository/docker/buharovalexander/movie_notebook_backend):
 ```
