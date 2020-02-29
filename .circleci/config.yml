@@ -11,23 +11,25 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "movie_notebook_backend/pom.xml" }}
+            - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: cd movie_notebook_backend && mvn dependency:go-offline
+      - run: ./mvnw dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "movie_notebook_backend/pom.xml" }}
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: cd movie_notebook_backend && ./mvnw clean integration-test 
+      - run: ./mvnw clean integration-test 
 
+      # save test report
       - store_test_results:
           path: movie_notebook_backend/target/surefire-reports
 
+      # send test report to CodeCov
       - run:
           name: Send report to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
