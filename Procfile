@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar movie_notebook_backend/target/movie_notebook_backend-*.jar
