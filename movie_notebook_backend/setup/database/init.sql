@@ -28,7 +28,7 @@ CREATE TABLE public.movies (
     description text,
     poster_path character varying(80),
     CONSTRAINT movies_pkey PRIMARY KEY (id),
-    CONSTRAINT movies_tmdb_id_unique UNIQUE (tmdb_id),
+    CONSTRAINT movies_tmdb_id_unique UNIQUE (tmdb_id, user_id),
     CONSTRAINT movies_user_id_fkey1 FOREIGN KEY (user_id)
       REFERENCES public.users (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
