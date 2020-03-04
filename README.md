@@ -3,6 +3,14 @@ Service to manage your movie collection
 [![CircleCI](https://circleci.com/gh/buharov-alexander/movie_notebook/tree/master.svg?style=svg)](https://circleci.com/gh/buharov-alexander/movie_notebook/tree/master)
 [![codecov](https://codecov.io/gh/buharov-alexander/movie_notebook/branch/master/graph/badge.svg)](https://codecov.io/gh/buharov-alexander/movie_notebook)
 
+Service allows to find movie in [TMDb](https://www.themoviedb.org/) and add to your personal collection.
+![](https://github.com/buharov-alexander/movie_notebook/blob/master/movie_notebook_web/public/search.gif)
+
+## Technical stack
+- **Backend:** Spring Boot, Spring MVC, Spring Security, Spring Data, PostgreSQL
+- **Frontend:** React, Redux, Redux Form, Redux Thunk, React Router DOM, Material UI
+- **Continuous Integration:** CircleCI, CodeCov, Jacoco
+
 ## Build and Launch
 Go to backend project:
 ```
