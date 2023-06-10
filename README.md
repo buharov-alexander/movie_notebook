@@ -3,7 +3,7 @@ Service to manage your movie collection
 [![CircleCI](https://circleci.com/gh/buharov-alexander/movie_notebook/tree/master.svg?style=svg)](https://circleci.com/gh/buharov-alexander/movie_notebook/tree/master)
 [![codecov](https://codecov.io/gh/buharov-alexander/movie_notebook/branch/master/graph/badge.svg)](https://codecov.io/gh/buharov-alexander/movie_notebook)
 
-The application [demo](https://movie-notebook-app.herokuapp.com/mnb/webui/movies) is deployed on Heroku platform. Credentials test/abcd. First open can be slow, it is specificity of the free platform.
+~~The application [demo](https://movie-notebook-app.herokuapp.com/mnb/webui/movies) is deployed on Heroku platform. Credentials test/abcd. First open can be slow, it is specificity of the free platform.~~ (Now is not supported)
 
 Service allows to find movie in [TMDb](https://www.themoviedb.org/) and add to your personal collection.
 ![](https://github.com/buharov-alexander/movie_notebook/blob/master/movie_notebook_web/public/search.gif)
